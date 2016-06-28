@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2016 at 05:08 AM
+-- Generation Time: Jun 28, 2016 at 05:36 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `php-project`
 --
+CREATE DATABASE IF NOT EXISTS `php-project` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `php-project`;
 
 -- --------------------------------------------------------
 
