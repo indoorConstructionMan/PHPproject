@@ -1,7 +1,19 @@
 <?php
-include("Table.php");
+require_once("Table.php");
+require_once("User/Object.php");
 class User extends Table {
     public $table_name = 'users';
+    
+    public function find_by_email($email) {
+        $select = "SELECT * FROM " . $this->table_name . " WHERE email='" . mysql_real_escape_string($email) . "'";
+        $result = mysql_query($select);
+        $user = mysql_fetch_assoc($result);
+        
+        if ($user){
+            return true;
+        }
+        return false;
+    }
     
     public function register($email, $password, $password_confirm) {
         $return = array(

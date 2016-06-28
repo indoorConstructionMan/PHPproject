@@ -1,6 +1,6 @@
 <?php
 
-class Set extends ArrayObject {
+class Set extends ArrayAccess {
     
 }
 

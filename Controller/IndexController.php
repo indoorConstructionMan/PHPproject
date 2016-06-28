@@ -1,5 +1,5 @@
 <?php
-include("/Model/User.php");
+require_once("/Model/User.php");
 
 class Index_Controller {
     
@@ -16,7 +16,6 @@ class Index_Controller {
             }
             
         } else {
-           
             // show login form
             include('/View/index.php');
         }

@@ -4,24 +4,19 @@ class Table {
     public $table_name;
     public $primary_key = 'id';
     
-    public function find_by_email($email) {
-        $select = "SELECT * FROM " . $this->table_name . " WHERE email='" . mysql_real_escape_string($email) . "'";
-        $result = mysql_query($select);
-        $user = mysql_fetch_assoc($result);
-        
-        if ($user){
-            return true;
-        }
-        return false;
-    }
     
-    public function get_all_rows()
-    {
+    const DEFAULT_PAGE_SIZE = 10;
+    
+    public function get_all_rows() {
         $query = "SELECT * FROM `$this->table_name`";
         $result = mysql_query($query);
         $rows = mysql_fetch_assoc($result);
         
         return $rows;
+    }
+    
+    public function get_page($page_number, $page_size = Self::DEFAULT_PAGE_SIZE) {
+        
     }
     
     public function find($id){
