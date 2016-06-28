@@ -27,14 +27,14 @@ class Table {
     public function find($id){
         echo "hey FIND";
         try {
-        $id = (int)$id;
-        $query = "SELECT * FROM `$this->table_name` WHERE `$this->primary_key` = $id";
-        var_dump($query);
-        $result = mysql_query($query);
-        var_dump($result);
-        $row = mysql_fetch_assoc($result);
-        var_dump($row);
-        var_dump(mysql_error());
+            $id = (int)$id;
+            $query = "SELECT * FROM `$this->table_name` WHERE `$this->primary_key` = $id";
+            var_dump($query);
+            $result = mysql_query($query);
+            var_dump($result);
+            $row = mysql_fetch_assoc($result);
+            var_dump($row);
+            var_dump(mysql_error());
         } catch (Exception $e) {
             echo $e->getMessage();
         }
