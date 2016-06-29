@@ -1,45 +1,4 @@
 <form role="form" method="post" action="/">
-        <script>   
-        var context = new AudioContext(),
-            
-            songs = [
-                "/Assets/Jhazmyne's Lullaby.mp3",
-                "/Assets/Living Loving Maid.mp3"
-            ];
-           
-        
-        function switchSongs() {
-            
-            
-            array.forEach(){
-                console.log(song);
-            }
-        }
-        
-        <?if (isset($result['message']) && $result['message'] != "") :?>
-            alert("<?=$result['message']?>","Uh Oh");
-        <?endif;?> 
-        </script>
-        
-        
-        <p>
-            <button type="nextSong" onclick="switchSongs()" class="myButton">Next</button>
-        </p>
-        
-        <audio>
-            
-            <source src= >
-            
-        </audio>
-        
-        
-        
-        
-        
-        
-        
-        
-        
         <div class="form-group">
             <label for="email">Email address:</label>
             <input type="email" class="form-control" id="email" name="email" value="<?=(isset($email))? $email : "" ;?>">

@@ -1,7 +1,7 @@
 <?php
-var_dump($_SERVER['REQUEST_URI']);
+$route = str_replace("params=", "", $_SERVER['PATH_INFO']);
 // checks the url and redirects to appropriate controller action
-switch ($_SERVER['REQUEST_URI']) {
+switch ($route) {
     
     // Index Controller
     case "register":
@@ -16,13 +16,18 @@ switch ($_SERVER['REQUEST_URI']) {
         break;
     
     // Spotify Controller
-    case "/spotify":
-        $controller = new SpotifyController();
-        $controller->auth_action();
-        break;
+    
     case "/spotify/auth":
         $controller = new SpotifyController();
         $controller->auth_redirect_action();
+        break;
+    case "/spotify/artists":
+        $controller = new SpotifyController();
+        $controller->artists_action();
+        break;
+    case "/spotify":
+        $controller = new SpotifyController();
+        $controller->auth_action();
         break;
     
     default:
