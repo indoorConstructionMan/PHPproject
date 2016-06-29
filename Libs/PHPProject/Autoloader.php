@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['INCLUDE_DIRS'] = array("Controller/","Model/","Libs/");
+$GLOBALS['INCLUDE_DIRS'] = array("Libs/", "Model/", "Controller/");
 
 spl_autoload_register(function ($class_name) {
     
@@ -9,7 +9,11 @@ spl_autoload_register(function ($class_name) {
         $not_found = false;
 
         try {
-            require $INCLUDE_DIR . str_replace("_", "/", $class_name) . '.php'; 
+            if ( file_exists($INCLUDE_DIR . str_replace("_", "/", $class_name) . '.php') == true) {
+                require $INCLUDE_DIR . str_replace("_", "/", $class_name) . '.php';
+            } else {
+                $not_found = true;
+            }
         } catch (Exception $ex) {
             $not_found = true;
         }
