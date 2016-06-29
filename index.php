@@ -14,7 +14,7 @@
     <body>
         <?
         try {
-            // setup autoloading for models
+            // setup autoloading for PHPProject classes
             require_once("Libs/PHPProject/Autoloader.php");
             // database connection
             require_once('db.php');             

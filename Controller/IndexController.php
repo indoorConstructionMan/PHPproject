@@ -3,26 +3,26 @@
 
 class IndexController extends PHPProject_Controller {
     
-    public static function index_action() 
+    public function index_action() 
     {
         if (isset($_POST['email'])) {
             if (isset($_POST['password_confirm'])) {
                 //var_dump("register action");
                 // someone is trying to register
-                self::register_action();
+                $this->register_action();
             } else {
                 // use is trying to login
-                self::login_action();
+                $this->login_action();
             }
             
         } else {
             // show login form
-            include('/View/index.php');
+            $this->_generate_view_path(true);
         }
         
     }
 
-    public static function login_action() 
+    public function login_action() 
     {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -33,15 +33,15 @@ class IndexController extends PHPProject_Controller {
             // @TODO populate the view
             // result doesn't exist
             $user = $result['user'];
-            self::main_action();
+            $this->main_action();
         } else {     
             // @TODO populate another damn view
             echo "Login fail";
-            include("/View/index.php");
+            $this->index_action();
         }
     }
     
-    public static function register_action() 
+    public function register_action() 
     {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -54,16 +54,16 @@ class IndexController extends PHPProject_Controller {
             // @TODO populate the view
             $user = $result['user'];
             //var_dump($user);
-            self::main_action();
+            $this->main_action();
         } else {     
             // @TODO populate another damn view
-            include("/View/index.php");
+            $this->_generate_view_path(true);
         }
     }
     
-    public static function main_action()
+    public function main_action()
     {
-        include("/View/main.php");    
+        $this->_generate_view_path(true);    
     }
     
 }
