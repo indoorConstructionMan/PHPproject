@@ -7,6 +7,9 @@ class Object extends ArrayObject {
     protected $_data = array();
     
     public function __construct(array $data = array(), $params = null) {
+        if (is_null($data)) {
+            return null;
+        }
         $this->populate($data);
         $this->init();
     }

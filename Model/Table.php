@@ -3,14 +3,15 @@
 class Table {
     public $table_name;
     public $primary_key = 'id';
+    protected $_object_class;
+    protected $_set_class;
     
     
     const DEFAULT_PAGE_SIZE = 10;
     
     public function get_all_rows() {
         $query = "SELECT * FROM `$this->table_name`";
-        $result = mysql_query($query);
-        $rows = mysql_fetch_assoc($result);
+        $rows = $this->set_query($query);
         
         return $rows;
     }
@@ -19,21 +20,24 @@ class Table {
         
     }
     
+    public function object_query($query) {
+        $result = mysql_query($query);
+        $row = new $_object_class(mysql_fetch_assoc($result));
+    }
+    
+    public function set_query($query) {
+        $result = mysql_query($query);
+        $row = new $_set_class(mysql_fetch_assoc($result));
+    }
+    
     public function find($id){
-        echo "hey FIND";
         try {
             $id = (int)$id;
             $query = "SELECT * FROM `$this->table_name` WHERE `$this->primary_key` = $id";
-            var_dump($query);
-            $result = mysql_query($query);
-            var_dump($result);
-            $row = mysql_fetch_assoc($result);
-            var_dump($row);
-            var_dump(mysql_error());
+            $row = $this->object_query($query);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        var_dump($row);
         return $row;
     }
     

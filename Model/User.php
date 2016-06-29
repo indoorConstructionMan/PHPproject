@@ -2,6 +2,8 @@
 
 class User extends Table {
     public $table_name = 'users';
+    protected $_object_class = "User_Object";
+    protected $_set_class = "User_Set";
     
     public function find_by_email($email) {
         $select = "SELECT * FROM " . $this->table_name . " WHERE email='" . mysql_real_escape_string($email) . "'";
