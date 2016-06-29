@@ -1,7 +1,7 @@
 <?php
 //require_once("/Model/User.php");
 
-class IndexController {
+class IndexController extends PHPProject_Controller {
     
     public static function index_action() 
     {
