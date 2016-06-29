@@ -1,7 +1,7 @@
 <?php
-require_once("/Model/User.php");
+//require_once("/Model/User.php");
 
-class Index_Controller {
+class IndexController {
     
     public static function index_action() 
     {

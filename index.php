@@ -14,10 +14,12 @@
     <body>
         <?
         try {
+            // setup autoloading for models
+            require_once("Libs/PHPProject/Autoloader.php");
             // database connection
-            include('db.php');             
+            require_once('db.php');             
             // route to appropriate controller action
-            include('routes.php');
+            require_once('routes.php');
         } catch (Exception $e) {
             die($e->getMessage());
         }

@@ -14,8 +14,7 @@ trait PHPProject_CamelCaseSupport {
         } else {
             $results = array();
             preg_match_all('/[A-Z][^A-Z]*/',ucfirst($name),$results);
-            $method_string = implode('_',$results[0]);
-            $method_string = strtolower($method_string);
+            $method_string = strtolower(implode('_',$results[0]));
             call_user_method_array($method_string, $this, $args);
         }
     }

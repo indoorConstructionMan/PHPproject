@@ -1,6 +1,5 @@
 <?php
-require_once("Table.php");
-require_once("User/Object.php");
+
 class User extends Table {
     public $table_name = 'users';
     

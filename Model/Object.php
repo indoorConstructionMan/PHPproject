@@ -1,5 +1,5 @@
 <?php
-require_once("/Libs/PHPProject/CamelCaseSupport.php");
+
 class Object extends ArrayObject {
     
     use PHPProject_CamelCaseSupport;
