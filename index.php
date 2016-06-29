@@ -9,7 +9,13 @@ header("Access-Control-Allow-Origin: *");
         <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
+        
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+        
     </head>
     
     <body>
