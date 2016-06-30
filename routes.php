@@ -1,15 +1,16 @@
 <?php
 $route = str_replace("params=", "", $_SERVER['PATH_INFO']);
+//var_dump($route);
 // checks the url and redirects to appropriate controller action
 switch ($route) {
     
     // Index Controller
-    case "register":
+    case "/register":
         //include("Controller/IndexController.php");
         $controller = new IndexController();
         $controller->register_action();
         break;
-    case "login":
+    case "/login":
         //include("Controller/IndexController.php");
         $controller = new IndexController();
         $controller->login_action();
