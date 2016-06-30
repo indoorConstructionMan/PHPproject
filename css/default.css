@@ -18,8 +18,26 @@
     color: rgba(0,0,0,0.25) !important;
 }
 // colors
-.alizarin {
-    background: #e74c3c !important;
+.weirdfix {
+    
+}
+.peter {
+    background: #3498DB !important;
+}
+.peter-text {
+    color: #3498DB !important;
+}
+.peter-border {
+    border-color: #3498DB !important;
+}
+.belize {
+    background: #2980B9 !important;
+}
+.belize-text {
+    color: #2980B9 !important;
+}
+.belize-border {
+    border-color: #2980B9 !important;
 }
 .alizarin {
     background: #e74c3c !important;
@@ -135,7 +153,7 @@
     padding: 4%;
     margin: 4% 0 4% 0;
     border-radius: 50%;
-    border: 3px solid #2ecc71;
+    //border: 3px solid;
     box-shadow: 0 0 1px #27ae60, 0 0 1px #27ae60, 0 0 1px #27ae60;
 }
 
@@ -153,11 +171,13 @@ body {
     border-bottom-style: dashed !important;
     outline: 0 !important;
     box-shadow: none !important;
+    padding: 0.25rem 0.5rem;
 }
 .input-field input:focus {
     border-bottom-style: solid !important;
     outline: 0 !important;
     box-shadow: none !important;
+    background-color: rgba(0,0,0,0.05);
 }
 .input-field input:valid {
     border-bottom-style: solid !important;
@@ -167,6 +187,7 @@ body {
 }
 .input-field label {
     font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
 }
 .input-field label.active {
     opacity: 0;
