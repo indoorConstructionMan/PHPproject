@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row fadein">
     <div class="col s4 offset-s4 padding5">
         <form method="post" action="login" autocomplete="off">
             <div class="row">
@@ -33,7 +33,7 @@
                 </div> 
             </div>
             <div class="row">
-                <button type="submit" class="col s12 moss-text bold" style="">create account</button>
+                <button type="submit" class="col s12 moss-text bold pulse-text-shadow" style="">create account</button>
                 <a href="login" class="form-link moss-text" style="">or click here to login</a>
             </div>
         </form>
