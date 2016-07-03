@@ -15,14 +15,11 @@ class IndexController extends PHPProject_Controller {
     
     public function index_action() 
     {
-        print_r("in index action");
         // check if they are logged in or not
         if ($this->_is_logged_in()) {
-            print_r("is logged in");
             // they are logged in, display index view
             $this->_generate_view_path(true);
         } else {
-            print_r("is NOT logged in");
             // they are NOT logged in, redirect them to the login page
             $this->login_action();
         }
@@ -80,21 +77,7 @@ class IndexController extends PHPProject_Controller {
     {
         // are we registering or viewing the form
         if (isset($_POST['email']) && isset($_POST['password'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $password_confirm = $_POST['password_confirm'];
-            //sprintf("%s %s %s", $email, $password, $password_confirm);
-            $user_model = new User();
-            $result = $user_model->register($email, $password, $password_confirm);
-            if ($result['success']) {
-                // @TODO populate the view
-                $user = $result['user'];
-                //var_dump($user);
-                $this->index_action();
-            } else {     
-                echo "Register fail";
-                $this->register_action();
-            }
+            
         } else {
             // viewing the form
             $this->_generate_view_path(true);

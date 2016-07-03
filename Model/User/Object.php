@@ -28,7 +28,7 @@ class User_Object extends PHPProject_Object {
         $return->data = $this;
         $return->success = true;
         $_SESSION['chatapp_user'] = $this;
-        var_dump("past login");
+        
         return $return;
     }
     
