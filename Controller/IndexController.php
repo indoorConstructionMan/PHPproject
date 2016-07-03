@@ -4,7 +4,7 @@
 class IndexController extends PHPProject_Controller {
     
     protected function _is_logged_in() {
-        if ($_SESSION['chatapp_user'] instanceof User_Object) {
+        if (isset($_SESSION['chatapp_user']) && $_SESSION['chatapp_user'] instanceof User_Object) {
             // they are logged in
             return true;
         } else {
@@ -15,11 +15,14 @@ class IndexController extends PHPProject_Controller {
     
     public function index_action() 
     {
+        print_r("in index action");
         // check if they are logged in or not
         if ($this->_is_logged_in()) {
+            print_r("is logged in");
             // they are logged in, display index view
             $this->_generate_view_path(true);
         } else {
+            print_r("is NOT logged in");
             // they are NOT logged in, redirect them to the login page
             $this->login_action();
         }
@@ -50,7 +53,7 @@ class IndexController extends PHPProject_Controller {
                 // check for email
                 $result = $user_model->find_by_email($email);
             }
-            
+
             // check if we found a user
             if ($result->success && $result->data instanceof User_Object) {
                 // if we did, try to log them in using the password provided
@@ -122,9 +125,8 @@ class IndexController extends PHPProject_Controller {
         $this->login_action();
     }
     
-    public function main_action()
-    {
-        $this->_generate_view_path(true);    
+    protected function _redirect($action) {
+        header("Location: ");
     }
     
 }

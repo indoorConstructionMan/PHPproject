@@ -23,12 +23,12 @@ class User_Object extends PHPProject_Object {
             $return->message = "Password or email provided is incorrect.";
             return $return;
         }
-
+        
         // all good, log them in
         $return->data = $this;
         $return->success = true;
         $_SESSION['chatapp_user'] = $this;
-        
+        var_dump("past login");
         return $return;
     }
     

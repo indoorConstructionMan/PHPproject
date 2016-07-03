@@ -5,15 +5,12 @@ class PHPProject_Object extends ArrayObject {
     protected $_data = array();
     
     public function __construct(array $data = array(), $params = null) {
-        if (is_null($data)) {
-            return null;
-        }
         $this->populate($data);
         $this->init();
     }
     
     public function init() {
-        
+        //print_r($this);
     }
     
     /*
@@ -26,6 +23,7 @@ class PHPProject_Object extends ArrayObject {
             // check if it's a string value, if so, strip slashes out of it
             $this->_data[$key] = is_string($value) && ! $is_json ? stripslashes($value) : $value;
         }
+        //print_r($this);
         return $this;
     }
     

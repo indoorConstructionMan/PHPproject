@@ -9,6 +9,7 @@ class User extends Table {
         $select = "SELECT * FROM `" . $this->table_name . "` WHERE `" . $using . "` = '" . mysql_real_escape_string($value) . "'";
         $result = mysql_query($select);
         $user = mysql_fetch_assoc($result);
+
         if ($user) {
             $user = new User_Object($user);
         }
