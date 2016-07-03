@@ -5,15 +5,45 @@ class User extends Table {
     protected $_object_class = "User_Object";
     protected $_set_class = "User_Set";
     
-    public function find_by_email($email) {
-        $select = "SELECT * FROM " . $this->table_name . " WHERE email='" . mysql_real_escape_string($email) . "'";
+    public function find_user($value, $using = 'id') {
+        $select = "SELECT * FROM `" . $this->table_name . "` WHERE `" . $using . "` = '" . mysql_real_escape_string($value) . "'";
         $result = mysql_query($select);
         $user = mysql_fetch_assoc($result);
+        if ($user) {
+            $user = new User_Object($user);
+        }
+        return $user;
+    }
+    
+    public function find_by_email($email) {
+        
+        $user = $this->find_user($email, 'email');
         
         if ($user){
-            return true;
+            return new PHPProject_ReturnMessage(array(
+                'success' => true,
+                'data' => $user
+            ));
+        } else {
+            return new PHPProject_ReturnMessage(array(
+                'message' => "No user found with that email address."
+            ));
         }
-        return false;
+    }
+    
+    public function find_by_username($username) {
+        
+        $user = $this->find_user($username, 'username');
+        if ($user){
+            return new PHPProject_ReturnMessage(array(
+                'success' => true,
+                'data' => $user
+            ));
+        } else {
+            return new PHPProject_ReturnMessage(array(
+                'message' => "No user found with that username."
+            ));
+        }
     }
     
     public function register($email, $password, $password_confirm) {

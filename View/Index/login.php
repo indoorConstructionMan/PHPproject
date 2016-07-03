@@ -9,6 +9,9 @@
                 </div>
             </div>
             <div class="row"> 
+                <?if (isset($return->message)) :?>
+                <div class="form_message moss-text"><?=$result->message?><div>
+                <?endif;?>
                 <div class="input-field col s12">
                     <input class="clouds-text moss-border bold" id="email" type="text" name="email" required>
                     <label for="email" class="moss-text">email address or username</label>

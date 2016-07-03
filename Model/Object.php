@@ -2,8 +2,6 @@
 
 class Object extends ArrayObject {
     
-    use PHPProject_CamelCaseSupport;
-    
     protected $_data = array();
     
     public function __construct(array $data = array(), $params = null) {
@@ -36,7 +34,7 @@ class Object extends ArrayObject {
      */
     public function __get($key) {
         
-        if (!$this->_isset($key)) {
+        if (!array_key_exists($key, $this->_data)) {
             throw new Exception("Column '$key' is not in the table.");
         }
         
@@ -47,7 +45,7 @@ class Object extends ArrayObject {
      * magic setter
      */
     public function __set($key, $value) {
-        if (!$this->_isset($key)) {
+        if (!array_key_exists($key, $this->_data)) {
             throw new Exception("Column '$key' is not in the table.");
         }
         

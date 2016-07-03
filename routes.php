@@ -1,23 +1,25 @@
 <?php
+// grab the portion of the current request url after .domain (ie. /controller/action for hello.com/controller/action)
 $route = str_replace("params=", "", $_SERVER['PATH_INFO']);
-//var_dump($route);
-// checks the url and redirects to appropriate controller action
+
+// checks the url and calls the appropriate controller action
 switch ($route) {
     
     // Index Controller
     case "/register":
-        //include("Controller/IndexController.php");
         $controller = new IndexController();
         $controller->register_action();
         break;
     case "/login":
-        //include("Controller/IndexController.php");
         $controller = new IndexController();
         $controller->login_action();
         break;
+    case "/logout":
+        $controller = new IndexController();
+        $controller->logout_action();
+        break;
     
     // Spotify Controller
-    
     case "/spotify/auth":
         $controller = new SpotifyController();
         $controller->auth_redirect_action();
@@ -32,7 +34,6 @@ switch ($route) {
         break;
     
     default:
-        //include("Controller/IndexController.php");
         $controller = new IndexController();
         $controller->index_action();
         break;
