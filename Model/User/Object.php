@@ -1,6 +1,6 @@
 <?php
 
-class User_Object extends Object {
+class User_Object extends PHPProject_Object {
 
     public function __construct($data) {
         parent::__construct($data);

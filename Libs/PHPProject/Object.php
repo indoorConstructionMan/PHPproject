@@ -1,6 +1,6 @@
 <?php
 
-class Object extends ArrayObject {
+class PHPProject_Object extends ArrayObject {
     
     protected $_data = array();
     

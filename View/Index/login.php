@@ -8,10 +8,12 @@
                     </div>
                 </div>
             </div>
+            <?if (isset($_SESSION['view_vars']->message)) :?>
+            <div class="row">
+                <div class="form_message moss-text col s12 center-align"><?=$_SESSION['view_vars']->message?></div>
+            </div>
+            <?endif;?>
             <div class="row"> 
-                <?if (isset($return->message)) :?>
-                <div class="form_message moss-text"><?=$result->message?><div>
-                <?endif;?>
                 <div class="input-field col s12">
                     <input class="clouds-text moss-border bold" id="email" type="text" name="email" required>
                     <label for="email" class="moss-text">email address or username</label>

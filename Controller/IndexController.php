@@ -61,11 +61,11 @@ class IndexController extends PHPProject_Controller {
                     return;
                 } else {
                     // they failed to login, show login page with error
-                    $this->_generate_view_path(true);
+                    $this->_generate_view_path(true, $result);
                 }
             } else {
                 // we failed to find a user with their email, show login page with error
-                $this->_generate_view_path(true);
+                $this->_generate_view_path(true, $result);
             }
         } else {
             // viewing the form

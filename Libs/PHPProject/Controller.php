@@ -12,7 +12,16 @@ class PHPProject_Controller {
         return str_replace('_action', '', debug_backtrace()[$nested_level]['function']);
     }
     
-    protected function _generate_view_path($ouput_include = false) {
+    protected function _generate_view_path($ouput_include = false, $view_vars = null) {
+        // clean view vars from session
+        $_SESSION['view_vars'] = array();
+        if ($view_vars) {
+            if (is_array($view_vars)) {
+                $_SESSION['view_vars'] = new PHPProject_ViewVars($view_vars);
+            } elseif ($view_vars instanceof PHPProject_Object) {
+                $_SESSION['view_vars'] = new PHPProject_ViewVars($view_vars->to_array());
+            }
+        }
         $path = SELF::VIEWS_PATH . $this->_get_controller_name() . "/" . $this->_get_action_name(2) . ".php";
         if ($ouput_include) {
             include($path);

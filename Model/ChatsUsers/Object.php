@@ -1,5 +1,5 @@
 <?php
 
-Class ChatsUsers_Object extends Object {
+Class ChatsUsers_Object extends PHPProject_Object {
     
 }
