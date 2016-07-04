@@ -11,6 +11,7 @@ class User_Object extends PHPProject_Object {
         
         // checks if password have been provided
         if (!isset($password)) {
+            $return->success = false;
             $return->message = "Please provide a password.";
             return $return;
         }
@@ -20,6 +21,7 @@ class User_Object extends PHPProject_Object {
 
         // see if the password is correct
         if ($hashed_password != $this->password) {
+            $return->success = false;
             $return->message = "Password or email provided is incorrect.";
             return $return;
         }
