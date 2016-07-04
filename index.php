@@ -38,6 +38,9 @@ header("Access-Control-Allow-Origin: *");
             // start session (used for logging in)
             session_start();
             // route to appropriate controller action
+            $GLOBALS['config'] = array(
+                "site_url" => "http://dubs.stink.com"
+            );
             require_once('routes.php');
         } catch (Exception $e) {
             die($e->getMessage());

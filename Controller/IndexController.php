@@ -21,7 +21,7 @@ class IndexController extends PHPProject_Controller {
             $this->_generate_view_path(true);
         } else {
             // they are NOT logged in, redirect them to the login page
-            $this->login_action();
+            $this->_redirect('login');
         }
     }
 
@@ -30,7 +30,7 @@ class IndexController extends PHPProject_Controller {
         // check if they are logged in already or not
         if ($this->_is_logged_in()) {
             // they are logged in, display index view
-            $this->index_action();
+            $this->_redirect();
             return;
         }
         
@@ -57,7 +57,7 @@ class IndexController extends PHPProject_Controller {
                 $result = $result->data->login($password);
                 if ($result->success) {
                     // they are now logged in, redirect them to the index page
-                    $this->index_action();
+                    $this->_redirect();
                     return;
                 } else {
                     // they failed to login, show login page with error
@@ -105,11 +105,11 @@ class IndexController extends PHPProject_Controller {
         session_destroy();
         
         // send them to the login page
-        $this->login_action();
+        $this->_redirect('login');
     }
     
     protected function _redirect($action) {
-        header("Location: ");
+        header("Location: " . $GLOBALS['config']['site_url'] . "/" . $action);
     }
     
 }
