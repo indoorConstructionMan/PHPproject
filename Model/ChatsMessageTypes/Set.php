@@ -1,5 +1,5 @@
 <?php
 
-Class ChatsMessageTypes_Set extends Set {
+Class ChatsMessageTypes_Set extends PHPProject_Database_Table_RowSet {
     
 }

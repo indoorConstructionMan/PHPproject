@@ -1,6 +1,6 @@
 <?php
 
-class User_Set extends Set {
+class User_Set extends PHPProject_Database_Table_RowSet {
     
 }
 

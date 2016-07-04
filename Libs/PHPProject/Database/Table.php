@@ -1,6 +1,6 @@
 <?php
 
-class Table {
+class PHPProject_Database_Table  {
     public $table_name;
     public $primary_key = 'id';
     protected $_object_class;

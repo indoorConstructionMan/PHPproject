@@ -19,6 +19,8 @@ header("Access-Control-Allow-Origin: *");
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- our default stylesheet, contains styles used on many pages -->
         <link rel="stylesheet" href="css/default.css">
+        <!-- hover effects stylesheet, contains styles used on many pages -->
+        <link rel="stylesheet" href="css/hover.css">
         
         <!-- jquery -->
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>

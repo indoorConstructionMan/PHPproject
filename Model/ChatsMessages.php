@@ -1,6 +1,6 @@
 <?php
 
-class ChatsMessages extends Table {
+class ChatsMessages extends PHPProject_Database_Table {
     public $table_name = "chats_messages";
     protected $_object_class = "Chats_MessagesObject";
     protected $_set_class = "ChatsMessages_Set";

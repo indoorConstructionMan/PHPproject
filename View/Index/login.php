@@ -1,4 +1,4 @@
-<div class="row /*slidein-top*/">
+<div class="row">
     <div class="col s4 offset-s4 padding5 min-width-400">
         <form method="post" action="login" autocomplete="off" class="slidein-top-components">
             <div class="row">
@@ -22,11 +22,11 @@
             </div>
             <?if (isset($_SESSION['view_vars']->message)) :?>
             <div class="row">
-                <div class="form_message white-text col s12 center-align"><i class="inherit-font-size material-icons">error_outline</i><?=$_SESSION['view_vars']->message?></div>
+                <div class="form_message white-text col s12 center-align hvr-buzz-out-stay"><i class="inherit-font-size material-icons">error_outline</i><?=$_SESSION['view_vars']->message?></div>
             </div>
             <?endif;?>
             <div class="row">
-                <button type="submit" class="col s12 moss-text bold pulse-text-shadow" style="">login</button>
+                <button type="submit" class="col s12 moss-text bold pulse-text-shadow hvr-buzz" style="">login</button>
                 <a href="register" class="form-link moss-text" style="">or click here to create an account</a>
             </div>
         </form>
