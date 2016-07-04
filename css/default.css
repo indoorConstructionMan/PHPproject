@@ -338,17 +338,22 @@ body {
     padding: 0.25rem 0.5rem;
     background-color: rgba(0,0,0,0.025);
     box-sizing: border-box;
+    color: inherit !important;
 }
-.input-field input:focus {
+.input-field input:focus,
+.input-field input:focus:-webkit-autofill {
     background-color: rgba(0,0,0,0.05);
     outline: 1px dashed rgba(0,0,0,0) !important;
     box-shadow: 0 0 0 1px rgba(0,0,0,0.25) !important;
+    color: inherit !important;
 }
-.input-field input:valid {
+.input-field input:valid,
+.input-field input:valid:-webkit-autofill {
     border-bottom: none !important;
     outline: 1px solid white !important;
     box-shadow: 0 0 0 1px rgba(0,0,0,0) !important;
     background-color: rgba(0,0,0,0.05);
+    color: inherit !important;
 }
 .input-field input:invalid {
 }
