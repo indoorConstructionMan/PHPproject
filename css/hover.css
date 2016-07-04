@@ -1379,8 +1379,8 @@
   animation-duration: 0.75s;
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinte;
-  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: 4;
+  animation-iteration-count: 4;
 }
 
 /* BACKGROUND TRANSITIONS */

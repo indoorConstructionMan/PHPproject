@@ -337,6 +337,13 @@ body {
 }
 .input-field input:invalid {
 }
+.input-field input:-webkit-autofill,
+.input-field input:-webkit-autofill:hover,
+.input-field input:-webkit-autofill:focus,
+.input-field input:-webkit-autofill:active {
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+    -webkit-transition-delay: 9999s;
+}
 .input-field label {
     font-size: 1.5rem;
     padding: 0rem 0.5rem 0.5rem;
