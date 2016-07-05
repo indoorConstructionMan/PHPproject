@@ -18,7 +18,7 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         $valuesArray = array();
 
         // Start of the query.
-        $query = "INSERT INTO ". self::get_table_name() . " (";
+        $query = "INSERT INTO ". $this->_get_table_name() . " (";
 
         // Adding in keys, storing values
         foreach ($this->to_array() as $key => $value) {
@@ -35,7 +35,7 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         $query .= ") VALUES ('";
         $query .= implode($valuesArray, "','");
         $query .= "');";
-        
+        var_dump($query);
         // The actual insert statement, in either case, a returnmessage is returned
         if(!mysql_query($query)){
               $return_message->success = false;
@@ -46,7 +46,7 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
 
 
     // TODO transform uppercase->underscore separated words.
-    public static function get_table_name() {
+    protected function _get_table_name() {
         $extract_table_name = get_class($this);
         $extract_table_name = trim($extract_table_name, "_Object");
         $extracted_table_name = preg_replace('/\B([A-Z])/', '_$1', $extract_table_name);

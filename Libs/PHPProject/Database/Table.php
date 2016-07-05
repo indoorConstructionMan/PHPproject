@@ -10,7 +10,7 @@ class PHPProject_Database_Table  {
     const DEFAULT_PAGE_SIZE = 10;
     
     public function __construct() {
-        $this->table_name = PHPProject_Database_Table_RowObject::get_table_name();
+        $this->table_name = $this->_get_table_name();
     }
     
     public function get_all_rows() {
@@ -84,5 +84,12 @@ class PHPProject_Database_Table  {
         }
         
         return $return;
+    }
+    
+    protected function _get_table_name() {
+        $extract_table_name = get_class($this);
+        $extract_table_name = trim($extract_table_name, "_Object");
+        $extracted_table_name = preg_replace('/\B([A-Z])/', '_$1', $extract_table_name);
+        return strtolower($extracted_table_name);
     }
 }
