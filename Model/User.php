@@ -15,7 +15,19 @@ class User extends PHPProject_Database_Table {
         }
         return $user;
     }
-
+    
+    public function find_by($value) {
+        if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            // check for email
+            $result = $this->find_by_email($value);
+        } else {
+            // check for username
+            $result = $this->find_by_username($value);
+        }
+        
+        return $result;
+    }
+    
     public function find_by_email($email) {
 
         $user = $this->find_user($email, 'email');
@@ -28,7 +40,7 @@ class User extends PHPProject_Database_Table {
         } else {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "Incorrect email address or password."
+                'message' => "incorrect email address or password."
             ));
         }
     }
@@ -44,7 +56,7 @@ class User extends PHPProject_Database_Table {
         } else {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "Incorrect username or password."
+                'message' => "incorrect username or password."
             ));
         }
     }
@@ -63,7 +75,7 @@ class User extends PHPProject_Database_Table {
         } else {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "All fields need a valid entry."
+                'message' => "all fields need a valid entry."
             ));
         }
 
@@ -71,7 +83,7 @@ class User extends PHPProject_Database_Table {
         if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "Email invalid."
+                'message' => "email invalid."
             ));
         }
 
@@ -79,7 +91,7 @@ class User extends PHPProject_Database_Table {
         if(strlen($data['username']) < 3 || strlen($data['username']) > 20) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "Username length must be between 3 and 20 characters."
+                'message' => "username length must be between 3 and 20 characters."
             ));
         }
 
@@ -87,7 +99,7 @@ class User extends PHPProject_Database_Table {
         if(strcmp($data['password'], $data['password_confirm'])) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "Passwords don't match."
+                'message' => "passwords don't match."
             ));
         }
         
@@ -102,7 +114,7 @@ class User extends PHPProject_Database_Table {
             if(!$result->success) {
                 return new PHPProject_ReturnMessage(array(
                     'success' => false,
-                    'message' => "This email address is already in use."
+                    'message' => "this email address is already in use."
                 ));
             }
             
@@ -115,7 +127,6 @@ class User extends PHPProject_Database_Table {
             $save_result = $user->save();
             if($save_result->success) {
                 $login_result = $user->login($data['password'], true);
-                print_r($login_result->message);
                 if($login_result->success) {
                     return new PHPProject_ReturnMessage(array(
                         'success' => true,
@@ -126,7 +137,7 @@ class User extends PHPProject_Database_Table {
 
                 return new PHPProject_ReturnMessage(array(
                     'success' => false,
-                    'message' => "Database error!"
+                    'message' => "database error!"
                 ));
             }
         }
