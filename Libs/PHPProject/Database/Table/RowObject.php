@@ -8,6 +8,8 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
     
     public function save() {
         $query = "INSERT INTO ". $this->get_table_name();
+        var_dump("_data");
+        print_r($this->to_array());
         foreach ($this->to_array() as $key => $value) {
             var_dump($key, $value);
         }
