@@ -20,9 +20,9 @@ class User_Object extends PHPProject_Database_Table_RowObject {
         $hashed_password = md5($password);
 
         if($new_user) {
-            md5($this->password);
+            $this->password = md5($this->password);
         }
-        
+      
         // see if the password is correct
         if ($hashed_password != $this->password) {
             $return->success = false;

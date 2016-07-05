@@ -115,6 +115,7 @@ class User extends PHPProject_Database_Table {
             $save_result = $user->save();
             if($save_result->success) {
                 $login_result = $user->login($data['password'], true);
+                print_r($login_result->message);
                 if($login_result->success) {
                     return new PHPProject_ReturnMessage(array(
                         'success' => true,
