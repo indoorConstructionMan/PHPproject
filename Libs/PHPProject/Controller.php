@@ -30,5 +30,13 @@ class PHPProject_Controller {
         }
     }
     
+    protected function _redirect($action, $controller = null) {
+        if (is_null($controller)) {
+            header("Location: " . $GLOBALS['config']['site_url'] . "/" . $action);
+        } else {
+            header("Location: " . $GLOBALS['config']['site_url'] . "/" . $controller . "/" . $action);
+        }
+    }
+    
 }
 

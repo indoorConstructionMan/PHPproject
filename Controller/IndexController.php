@@ -110,9 +110,5 @@ class IndexController extends PHPProject_Controller {
         // send them to the login page
         $this->_redirect('login');
     }
-
-    protected function _redirect($action) {
-        header("Location: " . $GLOBALS['config']['site_url'] . "/" . $action);
-    }
-
+    
 }
