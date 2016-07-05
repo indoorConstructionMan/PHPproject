@@ -56,10 +56,15 @@ class User extends PHPProject_Database_Table {
            isset($data['password']) && isset($data['password_confirm'])){
 
             $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
-            $data['$username'] = filter_var($data['username'], FILTER_SANITIZE_STRING);
-            $data['$password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
-            $data['$password_confirm'] = filter_var($data['password_confirm'], FILTER_SANITIZE_STRING);
+            $data['username'] = filter_var($data['username'], FILTER_SANITIZE_STRING);
+            $data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
+            $data['password_confirm'] = filter_var($data['password_confirm'], FILTER_SANITIZE_STRING);
 
+        } else {
+            return new PHPProject_ReturnMessage(array(
+                'success' => false,
+                'message' => "All fields need a valid entry."
+            ));
         }
 
         // Validation of email field
@@ -71,7 +76,7 @@ class User extends PHPProject_Database_Table {
         }
 
         // Checks to make sure password is between 3-20 characters
-        if(strlen($data['$username']) < 3 || strlen($data['$username']) > 20) {
+        if(strlen($data['username']) < 3 || strlen($data['username']) > 20) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
                 'message' => "Username length must be between 3 and 20 characters."
@@ -79,19 +84,20 @@ class User extends PHPProject_Database_Table {
         }
 
         // Makes sure that password and password_confirm are both the same.
-        if(strcmp($data['$password'], $data['$password_confirm'])) {
+        if(strcmp($data['password'], $data['password_confirm'])) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
                 'message' => "Passwords don't match."
             ));
         }
         
+        unset($data['password_confirm']);
 
         // All data has been validated/sanitized. Now check if user exists.
         $result = $this->find_by_email($data['email']);
 
         if($result->success && $result->data instanceof User_Object) {
-            $result = $result->data->login($data['$password']);
+            $result = $result->data->login($data['password']);
 
             if(!$result->success) {
                 return new PHPProject_ReturnMessage(array(
@@ -99,13 +105,16 @@ class User extends PHPProject_Database_Table {
                     'message' => "This email address is already in use."
                 ));
             }
+            
+            return new PHPProject_ReturnMessage(array(
+                'success' => true,
+                'message' => ""
+            ));
         } else {
             $user = new User_Object($data);
-            var_dump($user);
             $save_result = $user->save();
-            print_r("Exiting save");
             if($save_result->success) {
-                $login_result = $user->login();
+                $login_result = $user->login($data['password'], true);
                 if($login_result->success) {
                     return new PHPProject_ReturnMessage(array(
                         'success' => true,

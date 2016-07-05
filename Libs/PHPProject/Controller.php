@@ -12,7 +12,7 @@ class PHPProject_Controller {
         return str_replace('_action', '', debug_backtrace()[$nested_level]['function']);
     }
     
-    protected function _generate_view_path($ouput_include = false, $view_vars = null) {
+    protected function _generate_view_path($output_include = false, $view_vars = null) {
         // clean view vars from session
         $_SESSION['view_vars'] = array();
         if ($view_vars) {
@@ -23,7 +23,7 @@ class PHPProject_Controller {
             }
         }
         $path = SELF::VIEWS_PATH . $this->_get_controller_name() . "/" . $this->_get_action_name(2) . ".php";
-        if ($ouput_include) {
+        if ($output_include) {
             include($path);
         } else {
             return $path;
