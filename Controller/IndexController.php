@@ -42,30 +42,23 @@ class IndexController extends PHPProject_Controller {
 
             // try to find a user associated with the email or username provided
             $user_model = new User();
-            // check if they provided an email or a username
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                // check for username
-                $result = $user_model->find_by_username($email);
-            } else {
-                // check for email
-                $result = $user_model->find_by_email($email);
-            }
-
+            $find_result = $user_model->find_by($email);
+            
             // check if we found a user
-            if ($result->success && $result->data instanceof User_Object) {
+            if ($find_result->success && $find_result->data instanceof User_Object) {
                 // if we did, try to log them in using the password provided
-                $result = $result->data->login($password);
-                if ($result->success) {
+                $login_result = $find_result->data->login($password);
+                if ($login_result->success) {
                     // they are now logged in, redirect them to the index page
                     $this->_redirect();
                     return;
                 } else {
                     // they failed to login, show login page with error
-                    $this->_generate_view_path(true, $result);
+                    $this->_generate_view_path(true, $login_result);
                 }
             } else {
                 // we failed to find a user with their email, show login page with error
-                $this->_generate_view_path(true, $result);
+                $this->_generate_view_path(true, $find_result);
             }
         } else {
             // viewing the form

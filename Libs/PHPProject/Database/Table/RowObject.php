@@ -39,7 +39,7 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         // The actual insert statement, in either case, a returnmessage is returned
         if(!mysql_query($query)){
               $return_message->success = false;
-              $return_message->message = "Computer says no.";
+              $return_message->message = "computer says no.";
         }
         
         return $return_message;
