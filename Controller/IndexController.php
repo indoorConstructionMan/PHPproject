@@ -77,13 +77,14 @@ class IndexController extends PHPProject_Controller {
     {
         // are we registering or viewing the form
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $user_model = new User();
 
             $result = $user_model->register($_POST);
-            
+            var_dump($result);
+
             if($result->success) {
-                $this->_redirect();
+                $this->_redirect('index');
                 return;
             }
 

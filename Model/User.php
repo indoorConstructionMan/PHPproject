@@ -77,7 +77,7 @@ class User extends PHPProject_Database_Table {
                 'message' => "Username length must be between 3 and 20 characters."
             ));
         }
-        
+
         // Makes sure that password and password_confirm are both the same.
         if(strcmp($data['password'], $data['password_confirm'])) {
             return new PHPProject_ReturnMessage(array(
@@ -85,15 +85,14 @@ class User extends PHPProject_Database_Table {
                 'message' => "Passwords don't match."
             ));
         }
-        
+
         unset($data['password_confirm']);
-        
 
         // All data has been validated/sanitized. Now check if user exists.
         $result = $this->find_by_email($data['email']);
 
         if($result->success && $result->data instanceof User_Object) {
-            $result = $result->data->login($data['$password']);
+            $result = $result->data->login($data['password']);
 
             if(!$result->success) {
                 return new PHPProject_ReturnMessage(array(
@@ -103,17 +102,20 @@ class User extends PHPProject_Database_Table {
             }
         } else {
             $user = new User_Object($data);
-            
             $save_result = $user->save();
-            
+
             if($save_result->success) {
-                $login_result = $user->login();
+                $login_result = $user->login($data['password']);
                 if($login_result->success) {
                     return new PHPProject_ReturnMessage(array(
                         'success' => true,
                         'message' => ""
                     ));
                 }
+                return new PHPProject_ReturnMessage(array(
+                    'success' => true,
+                    'message' => "User was created, could not log in.";
+                ));
             } else {
 
                 return new PHPProject_ReturnMessage(array(

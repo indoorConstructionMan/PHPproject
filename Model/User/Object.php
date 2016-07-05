@@ -2,8 +2,8 @@
 
 class User_Object extends PHPProject_Database_Table_RowObject {
 
-    public function __construct($data) {
-        parent::__construct($data);
+    public function __construct(array $data = array(), $params = null) {
+        parent::__construct($data, $params);
     }
 
     public function login($password) {

@@ -1,6 +1,8 @@
 <?php
+$server_name = 'localhost';
+$username = 'root';
 // connect to our mysql database server
-$link = mysql_connect('localhost', 'root');
+$link = mysql_connect($server_name, $username);
 if (!$link) {
     // if connection failed, stop execution and show error message
     die('Could not connect: ' . mysql_error());
