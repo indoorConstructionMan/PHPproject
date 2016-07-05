@@ -83,11 +83,11 @@ class IndexController extends PHPProject_Controller {
             $result = $user_model->register($_POST);
 
             if($result->success) {
-                $this->_generate_view_path(true, $result);
-                return;
+                    $this->_redirect();
+                    return;
             }
 
-            $this->_generate_view_path(true, $result);
+            $this->_generate_view_path(true);
         } else {
             // viewing the form
             $this->_generate_view_path(true);
