@@ -54,10 +54,12 @@ class IndexController extends PHPProject_Controller {
                     return;
                 } else {
                     // they failed to login, show login page with error
+                    $login_result->data = $_POST;
                     $this->_generate_view_path(true, $login_result);
                 }
             } else {
                 // we failed to find a user with their email, show login page with error
+                $find_result->data = $_POST;
                 $this->_generate_view_path(true, $find_result);
             }
         } else {

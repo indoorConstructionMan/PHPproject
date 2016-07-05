@@ -10,13 +10,13 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input class="clouds-text moss-border bold flow-text" id="email" type="email" name="email" required>
+                    <input class="clouds-text moss-border bold flow-text" id="email" type="email" name="email" value="<?=(isset($_SESSION['view_vars']['data']['email']))?$_SESSION['view_vars']['data']['email']:'';?>" required>
                     <label for="email" class="moss-text flow-text">email address</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input class="clouds-text moss-border bold flow-text" id="username" type="text" name="username" required pattern="^[a-zA-Z0-9-_\.]{3,20}$">
+                    <input class="clouds-text moss-border bold flow-text" id="username" type="text" name="username" pattern="^[a-zA-Z0-9-_\.]{3,20}$" value="<?=(isset($_SESSION['view_vars']['data']['username']))?$_SESSION['view_vars']['data']['username']:'';?>" required >
                     <label for="username" class="moss-text flow-text">username <i>3-20 characters</i></label>
                 </div>
             </div>

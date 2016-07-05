@@ -10,7 +10,7 @@
             </div>
             <div class="row"> 
                 <div class="input-field col s12">
-                    <input class="clouds-text moss-border bold flow-text" id="email" type="text" name="email" required>
+                    <input class="clouds-text moss-border bold flow-text" id="email" type="text" name="email" value="<?=(isset($_SESSION['view_vars']['data']['email']))?$_SESSION['view_vars']['data']['email']:'';?>" required>
                     <label for="email" class="moss-text flow-text">email address or username</label>
                 </div>
             </div>

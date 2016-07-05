@@ -40,7 +40,8 @@ class Users extends PHPProject_Database_Table {
         } else {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "incorrect email address or password."
+                'message' => "incorrect email address or password.",
+                'data' => null
             ));
         }
     }
@@ -75,7 +76,8 @@ class Users extends PHPProject_Database_Table {
         } else {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "all fields need a valid entry."
+                'message' => "all fields need a valid entry.",
+                'data' => $data
             ));
         }
 
@@ -83,7 +85,8 @@ class Users extends PHPProject_Database_Table {
         if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "email invalid."
+                'message' => "email invalid.",
+                'data' => $data
             ));
         }
 
@@ -91,7 +94,8 @@ class Users extends PHPProject_Database_Table {
         if(strlen($data['username']) < 3 || strlen($data['username']) > 20) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "username length must be between 3 and 20 characters."
+                'message' => "username length must be between 3 and 20 characters.",
+                'data' => $data
             ));
         }
 
@@ -99,22 +103,24 @@ class Users extends PHPProject_Database_Table {
         if(strcmp($data['password'], $data['password_confirm'])) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
-                'message' => "passwords don't match."
+                'message' => "passwords don't match.",
+                'data' => $data
             ));
         }
         
         unset($data['password_confirm']);
 
         // All data has been validated/sanitized. Now check if user exists.
-        $result = $this->find_by_email($data['email']);
+        $find_result = $this->find_by_email($data['email']);
 
-        if($result->success && $result->data instanceof Users_Object) {
-            $result = $result->data->login($data['password']);
+        if($find_result->success && $find_result->data instanceof Users_Object) {
+            $login_result = $find_result->data->login($data['password']);
 
-            if(!$result->success) {
+            if(!$login_result->success) {
                 return new PHPProject_ReturnMessage(array(
                     'success' => false,
-                    'message' => "this email address is already in use."
+                    'message' => "this email address is already in use.",
+                    'data' => $data
                 ));
             }
             
@@ -137,7 +143,8 @@ class Users extends PHPProject_Database_Table {
 
                 return new PHPProject_ReturnMessage(array(
                     'success' => false,
-                    'message' => "database error!"
+                    'message' => "database error!",
+                    'data' => $data
                 ));
             }
         }
