@@ -1,6 +1,6 @@
 <?php
 
-class User_Object extends PHPProject_Database_Table_RowObject {
+class Users_Object extends PHPProject_Database_Table_RowObject {
 
     public function __construct($data) {
         parent::__construct($data);

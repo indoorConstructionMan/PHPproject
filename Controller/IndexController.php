@@ -4,7 +4,7 @@
 class IndexController extends PHPProject_Controller {
 
     protected function _is_logged_in() {
-        if (isset($_SESSION['chatapp_user']) && $_SESSION['chatapp_user'] instanceof User_Object) {
+        if (isset($_SESSION['chatapp_user']) && $_SESSION['chatapp_user'] instanceof Users_Object) {
             // they are logged in
             return true;
         } else {
@@ -41,11 +41,11 @@ class IndexController extends PHPProject_Controller {
             $password = $_POST['password'];
 
             // try to find a user associated with the email or username provided
-            $user_model = new User();
+            $user_model = new Users();
             $find_result = $user_model->find_by($email);
             
             // check if we found a user
-            if ($find_result->success && $find_result->data instanceof User_Object) {
+            if ($find_result->success && $find_result->data instanceof Users_Object) {
                 // if we did, try to log them in using the password provided
                 $login_result = $find_result->data->login($password);
                 if ($login_result->success) {
@@ -71,7 +71,7 @@ class IndexController extends PHPProject_Controller {
         // are we registering or viewing the form
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $user_model = new User();
+            $user_model = new Users();
 
             $result = $user_model->register($_POST);
        

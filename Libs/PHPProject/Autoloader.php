@@ -2,7 +2,7 @@
 // setting an array with keys for each folder we want the autoload to check when looking for our files
 $GLOBALS['INCLUDE_DIRS'] = array("Libs/", "Model/", "Controller/");
 
-// built-in php autoloader function, get's called automatically whenever a class is used (ie. new User() or User::somefunction())
+// built-in php autoloader function, get's called automatically whenever a class is used (ie. new Users() or User::somefunction())
 spl_autoload_register(function ($class_name) {
     
     // loop through each of the directories we put in the array above

@@ -1,8 +1,8 @@
 <?php
 
-class User extends PHPProject_Database_Table {
-    public $table_name = "users";
-    protected $_object_class = "User_Object";
+class Users extends PHPProject_Database_Table {
+    
+    protected $_object_class = "Users_Object";
     protected $_set_class = "User_Set";
 
     public function find_user($value, $using = 'id') {
@@ -11,7 +11,7 @@ class User extends PHPProject_Database_Table {
         $user = mysql_fetch_assoc($result);
 
         if ($user) {
-            $user = new User_Object($user);
+            $user = new Users_Object($user);
         }
         return $user;
     }
@@ -108,7 +108,7 @@ class User extends PHPProject_Database_Table {
         // All data has been validated/sanitized. Now check if user exists.
         $result = $this->find_by_email($data['email']);
 
-        if($result->success && $result->data instanceof User_Object) {
+        if($result->success && $result->data instanceof Users_Object) {
             $result = $result->data->login($data['password']);
 
             if(!$result->success) {
@@ -123,7 +123,7 @@ class User extends PHPProject_Database_Table {
                 'message' => ""
             ));
         } else {
-            $user = new User_Object($data);
+            $user = new Users_Object($data);
             $save_result = $user->save();
             if($save_result->success) {
                 $login_result = $user->login($data['password'], true);

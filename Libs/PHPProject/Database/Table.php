@@ -10,7 +10,7 @@ class PHPProject_Database_Table  {
     const DEFAULT_PAGE_SIZE = 10;
     
     public function __construct() {
-        $this->table_name = self::get_table_name();
+        $this->table_name = PHPProject_Database_Table_RowObject::get_table_name();
     }
     
     public function get_all_rows() {
