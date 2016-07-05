@@ -2,7 +2,7 @@
 //require_once("/Model/User.php");
 
 class IndexController extends PHPProject_Controller {
-    
+
     protected function _is_logged_in() {
         if (isset($_SESSION['chatapp_user']) && $_SESSION['chatapp_user'] instanceof User_Object) {
             // they are logged in
@@ -12,8 +12,8 @@ class IndexController extends PHPProject_Controller {
             return false;
         }
     }
-    
-    public function index_action() 
+
+    public function index_action()
     {
         // check if they are logged in or not
         if ($this->_is_logged_in()) {
@@ -25,7 +25,7 @@ class IndexController extends PHPProject_Controller {
         }
     }
 
-    public function login_action() 
+    public function login_action()
     {
         // check if they are logged in already or not
         if ($this->_is_logged_in()) {
@@ -33,13 +33,13 @@ class IndexController extends PHPProject_Controller {
             $this->_redirect();
             return;
         }
-        
+
         // are we logging in or viewing the form
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // logging
             $email = $_POST['email'];
             $password = $_POST['password'];
-            
+
             // try to find a user associated with the email or username provided
             $user_model = new User();
             // check if they provided an email or a username
@@ -72,19 +72,29 @@ class IndexController extends PHPProject_Controller {
             $this->_generate_view_path(true);
         }
     }
-    
-    public function register_action() 
+
+    public function register_action()
     {
         // are we registering or viewing the form
-        if (isset($_POST['email']) && isset($_POST['password'])) {
-            
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $user_model = new User();
+
+            $result = $user_model->register($_POST);
+
+            if($result->success) {
+                    $this->_redirect();
+                    return;
+            }
+
+            $this->_generate_view_path(true);
         } else {
             // viewing the form
             $this->_generate_view_path(true);
         }
-        
+
     }
-    
+
     public function logout_action() {
         session_start();
 
@@ -103,13 +113,13 @@ class IndexController extends PHPProject_Controller {
 
         // Finally, destroy the session.
         session_destroy();
-        
+
         // send them to the login page
         $this->_redirect('login');
     }
-    
+
     protected function _redirect($action) {
         header("Location: " . $GLOBALS['config']['site_url'] . "/" . $action);
     }
-    
+
 }

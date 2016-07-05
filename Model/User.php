@@ -4,9 +4,9 @@ class User extends PHPProject_Database_Table {
     public $table_name = 'users';
     protected $_object_class = "User_Object";
     protected $_set_class = "User_Set";
-    
+
     public function find_user($value, $using = 'id') {
-        $select = "SELECT * FROM `" . $this->table_name . "` WHERE `" . $using . "` = '" . mysql_real_escape_string($value) . "'";
+        $select = "SELECT * FROM `" . $this->table_name . "` WHERE `" . $using . "` = '" . mysql_real_escape_string(stripslashes($value)) . "'";
         $result = mysql_query($select);
         $user = mysql_fetch_assoc($result);
 
@@ -15,11 +15,11 @@ class User extends PHPProject_Database_Table {
         }
         return $user;
     }
-    
+
     public function find_by_email($email) {
-        
+
         $user = $this->find_user($email, 'email');
-        
+
         if ($user){
             return new PHPProject_ReturnMessage(array(
                 'success' => true,
@@ -32,9 +32,9 @@ class User extends PHPProject_Database_Table {
             ));
         }
     }
-    
+
     public function find_by_username($username) {
-        
+
         $user = $this->find_user($username, 'username');
         if ($user){
             return new PHPProject_ReturnMessage(array(
@@ -48,48 +48,77 @@ class User extends PHPProject_Database_Table {
             ));
         }
     }
-    
-    public function register($email, $password, $password_confirm) {
-        $return = array(
-            "success" => false,
-            "message" => "",
-            "user" => null
-        );
-        
-        // checks if email/password have been provided
-        if (!isset($email) || !isset($password) || !isset($password_confirm)) {
-            $return["message"] = "Please provide an email and password.";
-            return $return;
-        }
-        if($password != $password_confirm) {
-            $return["message"] = "Passwords don't match.";
-            return $return;
-        }
-        
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $return["message"] = "Please provide a valid email address.";
-            return $return;
-        }
-        
-        //if user is true, there already exist a row, so sign in with that user
-        $user = $this->find_by_email($email);
-        if ($user) {
-            return $this->login($email, $password, true);
-        }
-        //if not, just create the row in the database
-        $user = $this->create(array(
-            "email" => $email,
-            "password" => md5($password)
-        ));
-        var_dump($user);
-        if ($user) {
-            $return['user'] = $user;   
-            $result['success'] = true;
+
+    public function register($data) {
+
+        // makes sure all fields have been set, and grabs and sanitizes them.
+        if(isset($data['email']) && isset($data['username']) &&
+           isset($data['password']) && isset($data['password_confirm'])){
+
+            $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+            $data['$username'] = filter_var($data['username'], FILTER_SANITIZE_STRING);
+            $data['$password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
+            $data['$password_confirm'] = filter_var($data['password_confirm'], FILTER_SANITIZE_STRING);
+
         }
 
-        return $return;
+        // Validation of email field
+        if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            return new PHPProject_ReturnMessage(array(
+                'success' => false,
+                'message' => "Email invalid."
+            ));
+        }
+
+        // Checks to make sure password is between 3-20 characters
+        if(strlen($data['$username']) < 3 || strlen($data['$username']) > 20) {
+            return new PHPProject_ReturnMessage(array(
+                'success' => false,
+                'message' => "Username length must be between 3 and 20 characters."
+            ));
+        }
+
+        // Makes sure that password and password_confirm are both the same.
+        if(strcmp($data['$password'], $data['$password_confirm'])) {
+            return new PHPProject_ReturnMessage(array(
+                'success' => false,
+                'message' => "Passwords don't match."
+            ));
+        }
         
-        
-        
+
+        // All data has been validated/sanitized. Now check if user exists.
+        $result = $this->find_by_email($data['email']);
+
+        if($result->success && $result->data instanceof User_Object) {
+            $result = $result->data->login($data['$password']);
+
+            if(!$result->success) {
+                return new PHPProject_ReturnMessage(array(
+                    'success' => false,
+                    'message' => "This email address is already in use."
+                ));
+            }
+        } else {
+            $user = new User_Object($data);
+            var_dump($user);
+            $save_result = $user->save();
+            print_r("Exiting save");
+            if($save_result->success) {
+                $login_result = $user->login();
+                if($login_result->success) {
+                    return new PHPProject_ReturnMessage(array(
+                        'success' => true,
+                        'message' => ""
+                    ));
+                }
+            } else {
+
+                return new PHPProject_ReturnMessage(array(
+                    'success' => false,
+                    'message' => "Database error!"
+                ));
+            }
+        }
     }
 }

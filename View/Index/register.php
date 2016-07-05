@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s4 offset-s4 padding5">
-        <form method="post" action="login" autocomplete="off" class="slidein-top-components">
+        <form method="post" action="register" autocomplete="off" class="slidein-top-components">
             <div class="row">
                 <div class="col s12">
                     <div class="center promo promo-example">
@@ -8,7 +8,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row"> 
+            <div class="row">
                 <div class="input-field col s12">
                     <input class="clouds-text moss-border bold flow-text" id="email" type="email" name="email" required>
                     <label for="email" class="moss-text flow-text">email address</label>
@@ -18,9 +18,9 @@
                 <div class="input-field col s12">
                     <input class="clouds-text moss-border bold flow-text" id="username" type="text" name="username" required pattern="^[a-zA-Z0-9-_\.]{3,20}$">
                     <label for="username" class="moss-text flow-text">username <i>3-20 characters</i></label>
-                </div> 
+                </div>
             </div>
-            <div class="row"> 
+            <div class="row">
                 <div class="input-field col s12">
                     <input class="clouds-text moss-border bold flow-text" id="password" type="password" name="password" required>
                     <label for="password" class="moss-text flow-text">password</label>
@@ -30,7 +30,7 @@
                 <div class="input-field col s12">
                     <input class="clouds-text moss-border bold flow-text" id="password_confirm" type="password" name="password_confirm" required>
                     <label for="password_confirm" class="moss-text flow-text">confirm password</label>
-                </div> 
+                </div>
             </div>
             <?if (isset($_SESSION['view_vars']->message)) :?>
             <div class="row">
@@ -44,5 +44,3 @@
         </form>
     </div>
 </div>
-
-
