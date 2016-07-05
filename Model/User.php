@@ -1,7 +1,7 @@
 <?php
 
 class User extends PHPProject_Database_Table {
-    public $table_name = 'users';
+    public $table_name = "users";
     protected $_object_class = "User_Object";
     protected $_set_class = "User_Set";
 
