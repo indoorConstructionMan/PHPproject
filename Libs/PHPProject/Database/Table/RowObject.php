@@ -41,16 +41,15 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
               $return_message->success = false;
               $return_message->message = "Computer says no.";
         }
-        
         return $return_message;
     }
 
 
     // TODO transform uppercase->underscore separated words.
     public function get_table_name() {
-        $extracted_table_name = get_class($this);
-        $extracted_table_name = trim($extracted_table_name, "_Object");
-        $extracted_table_name .= "s";
+        $extract_table_name = get_class($this);
+        $extract_table_name = trim($extract_table_name, "_Object");
+        $extracted_table_name = preg_replace('/\B([A-Z])/', '_$1', $extract_table_name);
         return strtolower($extracted_table_name);
     }
 
