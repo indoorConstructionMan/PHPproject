@@ -6,7 +6,7 @@ class User_Object extends PHPProject_Database_Table_RowObject {
         parent::__construct($data, $params);
     }
 
-    public function login($password) {
+    public function login($password, $new_user = false) {
         $return = new PHPProject_ReturnMessage();
 
         // checks if password have been provided
@@ -18,6 +18,10 @@ class User_Object extends PHPProject_Database_Table_RowObject {
 
         // hashing it out (password)
         $hashed_password = md5($password);
+
+        if ($new_user) {
+          $this->password = md5($this->password);
+        }
 
         // see if the password is correct
         if ($hashed_password != $this->password) {

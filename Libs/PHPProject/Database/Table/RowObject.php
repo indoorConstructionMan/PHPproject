@@ -9,6 +9,11 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
     // Save a single row in a database
     public function save() {
 
+        $return_message = new PHPProject_ReturnMessage(array(
+            'success' => true,
+            'message' => ""
+        ));
+
         //Store the values for sql statement
         $valuesArray = array();
 
@@ -19,6 +24,9 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         foreach ($this->to_array() as $key => $value) {
           $query .= mysql_real_escape_string($key);
           $query .= ",";
+          if($key == 'password') {
+            $value = md5($value);
+          }
           $valuesArray[] = mysql_real_escape_string($value);
         }
 
@@ -30,17 +38,11 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
 
         // The actual insert statement, in either case, a returnmessage is returned
         if(!mysql_query($query)){
-          return new PHPProject_ReturnMessage(array(
-              'success' => false,
-              'message' => "Couldn't register user. Please try again."
-          ));
+              $return_message->success = false;
+              $return_message->message = "Computer says no.";
         }
 
-        return new PHPProject_ReturnMessage(array(
-            'success' => true,
-            'message' => ""
-        ));
-
+        return $return_message;
     }
 
 

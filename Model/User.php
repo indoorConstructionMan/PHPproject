@@ -100,12 +100,17 @@ class User extends PHPProject_Database_Table {
                     'message' => "This email address is already in use."
                 ));
             }
+
+            return new PHPProject_ReturnMessage(array(
+                'success' => true,
+                'message' => ""
+            ));
         } else {
             $user = new User_Object($data);
             $save_result = $user->save();
 
             if($save_result->success) {
-                $login_result = $user->login($data['password']);
+                $login_result = $user->login($data['password'], true);
                 if($login_result->success) {
                     return new PHPProject_ReturnMessage(array(
                         'success' => true,
@@ -114,7 +119,7 @@ class User extends PHPProject_Database_Table {
                 }
                 return new PHPProject_ReturnMessage(array(
                     'success' => true,
-                    'message' => "User was created, could not log in.";
+                    'message' => "User was created, could not log in."
                 ));
             } else {
 
