@@ -35,7 +35,7 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         $query .= ") VALUES ('";
         $query .= implode($valuesArray, "','");
         $query .= "');";
-        var_dump($query);
+        
         // The actual insert statement, in either case, a returnmessage is returned
         if(!mysql_query($query)){
               $return_message->success = false;

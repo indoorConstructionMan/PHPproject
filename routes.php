@@ -19,6 +19,12 @@ switch ($route) {
         $controller->logout_action();
         break;
     
+    //Chats Controller
+    case "/content":
+        $controller = new ChatController();
+        $controller->content_action();
+        break;
+        
     // Spotify Controller
     case "/spotify/auth":
         $controller = new SpotifyController();

@@ -6,5 +6,9 @@ class ChatController extends PHPProject_Controller {
         
     }
     
+    public function content_action() {
+        var_dump("Hello World");
+    }
+    
 }
 
