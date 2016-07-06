@@ -15,7 +15,7 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         ));
 
         //Store the values for sql statement
-        $valuesArray = array();
+        $values_array = array();
 
         // Start of the query.
         $query = "INSERT INTO ". $this->_get_table_name() . " (";
@@ -27,19 +27,19 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
           if($key == 'password') {
             $value = md5($value);
           }
-          $valuesArray[] = mysql_real_escape_string($value);
+          $values_array[] = mysql_real_escape_string($value);
         }
 
         // Getting rid of some dirt, adding some, and adding in values
         $query = substr_replace($query, "", -1);
         $query .= ") VALUES ('";
-        $query .= implode($valuesArray, "','");
+        $query .= implode($values_array, "','");
         $query .= "');";
         
         // The actual insert statement, in either case, a returnmessage is returned
         if(!mysql_query($query)){
               $return_message->success = false;
-              $return_message->message = "computer says no.";
+              $return_message->message = "computer says no";
         }
         return $return_message;
     }
