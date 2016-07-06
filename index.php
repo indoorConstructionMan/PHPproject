@@ -18,9 +18,9 @@ header("Access-Control-Allow-Origin: *");
         <!-- Materialize icon font for displaying icons as a font -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- our default stylesheet, contains styles used on many pages -->
-        <link rel="stylesheet" href="css/default.css">
+        <link rel="stylesheet" href="/css/default.css">
         <!-- hover effects stylesheet, contains styles used on many pages -->
-        <link rel="stylesheet" href="css/hover.css">
+        <link rel="stylesheet" href="/css/hover.css">
         
         <!-- jquery -->
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>

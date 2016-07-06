@@ -20,9 +20,9 @@ switch ($route) {
         break;
     
     //Chats Controller
-    case "/content":
+    case "/chat/":
         $controller = new ChatController();
-        $controller->content_action();
+        $controller->index_action();
         break;
         
     // Spotify Controller

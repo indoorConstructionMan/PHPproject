@@ -2,12 +2,12 @@
 
 class ChatController extends PHPProject_Controller {
     
-    public function check_for_new_messages_action() {
-        
+    public function index_action() {
+        $this->_generate_view_path(true);
     }
     
-    public function content_action() {
-        var_dump("Hello World");
+    public function check_for_new_messages_action() {
+        
     }
     
 }

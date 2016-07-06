@@ -38,5 +38,23 @@ class PHPProject_Controller {
         }
     }
     
+    protected function _is_logged_in($redirect_loggedin = null, $redirect_notloggedin = null) {
+        if (isset($_SESSION['chatapp_user']) && $_SESSION['chatapp_user'] instanceof Users_Object) {
+            // they are logged in
+            if (!is_null($redirect_loggedin)) {
+                $this->_redirect($redirect_loggedin);
+            } else {
+                return true;
+            }
+        } else {
+            // they are NOT logged in
+            if (!is_null($redirect_notloggedin)) {
+                $this->_redirect($redirect_notloggedin);
+            } else {
+                return false;
+            }
+        }
+    }
+    
 }
 

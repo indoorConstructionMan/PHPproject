@@ -3,22 +3,12 @@
 
 class IndexController extends PHPProject_Controller {
 
-    protected function _is_logged_in() {
-        if (isset($_SESSION['chatapp_user']) && $_SESSION['chatapp_user'] instanceof Users_Object) {
-            // they are logged in
-            return true;
-        } else {
-            // they are NOT logged in
-            return false;
-        }
-    }
-
     public function index_action()
     {
         // check if they are logged in or not
         if ($this->_is_logged_in()) {
-            // they are logged in, display index view
-            $this->_generate_view_path(true);
+            // they are logged in, redirect to chat controller
+            $this->_redirect('','chat');
         } else {
             // they are NOT logged in, redirect them to the login page
             $this->_redirect('login');
@@ -27,70 +17,22 @@ class IndexController extends PHPProject_Controller {
 
     public function login_action()
     {
-        // check if they are logged in already or not
-        if ($this->_is_logged_in()) {
-            // they are logged in, display index view
-            $this->_redirect();
-            return;
-        }
-
-        // are we logging in or viewing the form
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // logging
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-
-            // try to find a user associated with the email or username provided
-            $user_model = new Users();
-            $find_result = $user_model->find_by($email);
-            
-            // check if we found a user
-            if ($find_result->success && $find_result->data instanceof Users_Object) {
-                // if we did, try to log them in using the password provided
-                $login_result = $find_result->data->login($password);
-                if ($login_result->success) {
-                    // they are now logged in, redirect them to the index page
-                    $this->_redirect();
-                    return;
-                } else {
-                    // they failed to login, show login page with error
-                    $login_result->data = $_POST;
-                    $this->_generate_view_path(true, $login_result);
-                }
-            } else {
-                // we failed to find a user with their email, show login page with error
-                $find_result->data = $_POST;
-                $this->_generate_view_path(true, $find_result);
-            }
-        } else {
-            // viewing the form
-            $this->_generate_view_path(true);
-        }
+        $result = $this->_login_or_register(true, $_POST);
+        $this->_generate_view_path(true, $result);
     }
 
     public function register_action()
     {
-        // are we registering or viewing the form
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $user_model = new Users();
-
-            $result = $user_model->register($_POST);
-       
-            if($result->success) {
-                $this->_redirect();
-                return;
-            }
-
-            $this->_generate_view_path(true, $result);
-        } else {
-            // viewing the form
-            $this->_generate_view_path(true);
-        }
-
+        
+        $result = $this->_login_or_register(false, $_POST);
+        $this->_generate_view_path(true, $result);
     }
 
-    public function logout_action() {
+    public function logout_action() 
+    {
+        // check if they are logged in already or not, redirect to login if they are not
+        $this->_is_logged_in(null, 'login');
+        
         session_start();
 
         // Unset all of the session variables.
@@ -111,6 +53,32 @@ class IndexController extends PHPProject_Controller {
 
         // send them to the login page
         $this->_redirect('login');
+    }
+    
+    protected function _login_or_register($is_login,$data)
+    {
+        // check if they are logged in already or not, redirect to index if they are
+        $this->_is_logged_in('');
+        
+        // are we registering or viewing the form
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user_model = new Users();
+
+            if ($is_login) {
+                $result = $user_model->login_user($_POST);
+            } else {
+                $result = $user_model->register_user($_POST);
+            }
+
+            if ($result->success) {
+                $this->_redirect();
+                return;
+            }
+
+            return $result;
+        } else {
+            return null;
+        }
     }
     
 }
