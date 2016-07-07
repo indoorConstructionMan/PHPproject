@@ -6,7 +6,11 @@ class ChatController extends PHPProject_Controller {
         $this->_generate_view_path(true);
     }
     
-    public function check_for_new_messages_action() {
+    public function _get_messages_action() {
+        
+    }
+    
+    public function _new_message_action() {
         
     }
     

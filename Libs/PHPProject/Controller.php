@@ -34,7 +34,11 @@ class PHPProject_Controller {
         if (is_null($controller)) {
             header("Location: " . $GLOBALS['config']['site_url'] . "/" . $action);
         } else {
-            header("Location: " . $GLOBALS['config']['site_url'] . "/" . $controller . "/" . $action);
+            if ($action == '') {
+                header("Location: " . $GLOBALS['config']['site_url'] . "/" . $controller);
+            } else {
+                header("Location: " . $GLOBALS['config']['site_url'] . "/" . $controller . "/" . $action);
+            }
         }
     }
     

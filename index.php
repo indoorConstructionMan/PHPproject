@@ -1,8 +1,23 @@
-<?
+<?php
 // hide all warning and notice level messsages
 error_reporting(E_ERROR);
 // enable CORS https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
 header("Access-Control-Allow-Origin: *");
+try {
+    // setup autoloading for PHPProject classes
+    require_once("Libs/PHPProject/Autoloader.php");
+    // database connection
+    require_once('db.php');  
+    // start session (used for logging in)
+    session_start();
+    // route to appropriate controller action
+    $GLOBALS['config'] = array(
+        "site_url" => "http://dubs.stink.com"
+    );
+} catch(Exception $e) {
+    die($e->getMessage());
+}
+if (stripos($_SERVER['PATH_INFO'], "ajax") === false) :
 ?>
 <!-- DOCTYPE used to tell the browser what version of the html spec we're using (html5 in this case) -->
 <!DOCTYPE html>
@@ -29,24 +44,10 @@ header("Access-Control-Allow-Origin: *");
     </head>
     
     <body class="emerald">
-        <?
-        try {
-            // setup autoloading for PHPProject classes
-            require_once("Libs/PHPProject/Autoloader.php");
-            // database connection
-            require_once('db.php');  
-            // start session (used for logging in)
-            session_start();
-            // route to appropriate controller action
-            $GLOBALS['config'] = array(
-                "site_url" => "http://dubs.stink.com"
-            );
-            require_once('routes.php');
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-        ?>
-        
+        <?php require_once('routes.php');?>
     </body>
 
 </html>
+<?php else:?>
+<?php require_once('routes.php');?>
+<?php endif; ?>
