@@ -32,6 +32,10 @@ class Users_Object extends PHPProject_Database_Table_RowObject {
             return $return;
         }
 
+        
+        $this->is_online = TRUE;
+        $this->update();
+        
         // all good, log them in
         $return->data = $this;
         $return->success = true;

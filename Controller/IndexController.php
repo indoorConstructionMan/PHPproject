@@ -35,6 +35,9 @@ class IndexController extends PHPProject_Controller {
         
         session_start();
 
+        $_SESSION['chatapp_user']->is_online = False;
+        $_SESSION['chatapp_user']->update();
+       
         // Unset all of the session variables.
         $_SESSION = array();
 
@@ -51,11 +54,13 @@ class IndexController extends PHPProject_Controller {
         // Finally, destroy the session.
         session_destroy();
 
+        
+        
         // send them to the login page
         $this->_redirect('login');
     }
     
-    protected function _login_or_register($is_login,$data)
+    protected function _login_or_register($is_login)
     {
         // check if they are logged in already or not, redirect to index if they are
         $this->_is_logged_in('');

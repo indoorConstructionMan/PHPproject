@@ -110,6 +110,7 @@ class Users extends PHPProject_Database_Table {
             $data['username'] = filter_var($data['username'], FILTER_SANITIZE_STRING);
             $data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
             $data['password_confirm'] = filter_var($data['password_confirm'], FILTER_SANITIZE_STRING);
+            $data['is_online'] = FALSE;
 
         } else {
             return new PHPProject_ReturnMessage(array(
@@ -196,7 +197,7 @@ class Users extends PHPProject_Database_Table {
             } else {
                 return new PHPProject_ReturnMessage(array(
                     'success' => false,
-                    'message' => "database error!",
+                    'message' => "database error! Users' table.",
                     'data' => $data
                 ));
             }

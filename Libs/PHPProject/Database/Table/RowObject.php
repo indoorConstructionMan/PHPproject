@@ -6,6 +6,34 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         parent::__construct($data, $params);
     }
 
+    public function update() {
+        
+        $return_message = new PHPProject_ReturnMessage(array(
+            'success' => true,
+            'message' => "",
+            'data' => array()
+        ));
+        
+        $update = "UPDATE " . $this->_get_table_name() . " SET ";
+        
+        // Adding in keys, storing values
+        foreach ($this->to_array() as $key => $value) {
+          $update .= mysql_real_escape_string($key) . "='" . mysql_real_escape_string($value) . "',";
+        }
+        
+        $update = rtrim($update, ",");
+        $update .= " WHERE id=" . $this->id;
+        $update .= ";";
+        
+        // The actual insert statement, in either case, a returnmessage is returned
+        if(!mysql_query($update)){
+              $return_message->success = false;
+              $return_message->message = "computer says no. Update method.";
+        }
+        return $return_message;
+    }
+    
+    
     // Save a single row in a database
     public function save() {
 
@@ -41,6 +69,9 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
               $return_message->success = false;
               $return_message->message = "computer says no";
         }
+        
+        $this->id = mysql_insert_id();
+        
         return $return_message;
     }
 
@@ -52,6 +83,5 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         $extracted_table_name = preg_replace('/\B([A-Z])/', '_$1', $extract_table_name);
         return strtolower($extracted_table_name);
     }
-
 
 }
