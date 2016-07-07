@@ -1,0 +1,1 @@
+ALTER TABLE users ADD `is_online` boolean NOT NULL default false;
