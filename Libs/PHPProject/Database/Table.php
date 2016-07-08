@@ -27,6 +27,7 @@ class PHPProject_Database_Table  {
     public function object_query($query) {
         $result = mysql_query($query);
         $row = new $_object_class(mysql_fetch_assoc($result));
+        return $row;
     }
     
     public function set_query($query) {
@@ -43,6 +44,12 @@ class PHPProject_Database_Table  {
             echo $e->getMessage();
         }
         return $row;
+    }
+        
+    public function find_max($column_name='id') {
+        $select = "SELECT MAX(" . $column_name . ") FROM " . $this->_get_table_name() .";";
+        $return = mysql_fetch_assoc(mysql_query($select));
+        return (int) $return['MAX(id)'];
     }
     
     public function create($data = array()) {

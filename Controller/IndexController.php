@@ -22,12 +22,28 @@ class IndexController extends PHPProject_Controller {
     }
 
     public function register_action()
-    {
-        
+    {  
         $result = $this->_login_or_register(false, $_POST);
         $this->_generate_view_path(true, $result);
     }
 
+    public function guest_login_action() {       
+        $user_model = new Users();
+        $guest_data = $user_model->setup_guest_data();
+        
+        $guest = new Users_Object($guest_data);
+        if ($guest->save()->success) {    
+            if($guest->login('', true)->success) {    
+                $this->_redirect('', 'chat');
+                return;
+            } else {
+                var_dump('Login failed.');
+            }
+        }
+        
+        
+    }
+    
     public function logout_action() 
     {
         // check if they are logged in already or not, redirect to login if they are not
@@ -85,5 +101,7 @@ class IndexController extends PHPProject_Controller {
             return null;
         }
     }
+    
+    
     
 }

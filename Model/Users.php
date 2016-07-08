@@ -16,6 +16,24 @@ class Users extends PHPProject_Database_Table {
         return $user;
     }
     
+    public function setup_guest_data() {
+        // User_Object constructor data
+        $guest_data = array();
+        
+        // Determine the highest value in database, add one to value.
+        $number = $this->find_max();
+        $number += 1;
+        
+        // Assign values for database 
+        $guest_data['id'] = null;
+        $guest_data['username'] = "guest_" . $number;
+        $guest_data['email'] = "guest@" . $number . ".com";
+        $guest_data['password'] = "";
+        $guest_data['is_online'] = False;
+        
+        return $guest_data;
+    }
+    
     public function find_by($value) {
         if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
             // check for email

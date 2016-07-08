@@ -18,6 +18,10 @@ switch ($route) {
         $controller = new IndexController();
         $controller->logout_action();
         break;
+    case "/guest_login":
+        $controller = new IndexController();
+        $controller->guest_login_action();
+        break;
     
     //Chats Controller
     case "/chat":

@@ -1,7 +1,7 @@
 <?php
 
 class PHPProject_Database_Table_RowObject extends PHPProject_Object {
-
+    
     public function __construct(array $data = array(), $params = null) {
         parent::__construct($data, $params);
     }
@@ -13,6 +13,8 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
             'message' => "",
             'data' => array()
         ));
+        
+        unset($this->to_array()['id']); 
 
         $update = "UPDATE " . $this->_get_table_name() . " SET ";
 
@@ -48,6 +50,8 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         // Start of the query.
         $query = "INSERT INTO " . $this->_get_table_name() . " (";
 
+        unset($this->to_array()['id']);    
+        
         // Adding in keys, storing values
         foreach ($this->to_array() as $key => $value) {
             $query .= mysql_real_escape_string($key);

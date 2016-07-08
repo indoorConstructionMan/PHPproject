@@ -32,7 +32,7 @@ class Users_Object extends PHPProject_Database_Table_RowObject {
             return $return;
         }
 
-        
+        // Update database
         $this->is_online = TRUE;
         $this->update();
         
