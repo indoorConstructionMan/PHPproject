@@ -7,55 +7,55 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
     }
 
     public function update() {
-        
+
         $return_message = new PHPProject_ReturnMessage(array(
             'success' => true,
             'message' => "",
             'data' => array()
         ));
-        
+
         $update = "UPDATE " . $this->_get_table_name() . " SET ";
-        
+
         // Adding in keys, storing values
         foreach ($this->to_array() as $key => $value) {
-          $update .= mysql_real_escape_string($key) . "='" . mysql_real_escape_string($value) . "',";
+            $update .= mysql_real_escape_string($key) . "='" . mysql_real_escape_string($value) . "',";
         }
-        
+
         $update = rtrim($update, ",");
         $update .= " WHERE id=" . $this->id;
         $update .= ";";
-        
+
         // The actual insert statement, in either case, a returnmessage is returned
-        if(!mysql_query($update)){
-              $return_message->success = false;
-              $return_message->message = "computer says no. Update method.";
+        if (!mysql_query($update)) {
+            $return_message->success = false;
+            $return_message->message = "computer says no. Update method.";
         }
         return $return_message;
     }
-    
-    
+
     // Save a single row in a database
     public function save() {
 
         $return_message = new PHPProject_ReturnMessage(array(
             'success' => true,
-            'message' => ""
+            'message' => "",
+            'data' => array()
         ));
 
         //Store the values for sql statement
         $values_array = array();
 
         // Start of the query.
-        $query = "INSERT INTO ". $this->_get_table_name() . " (";
+        $query = "INSERT INTO " . $this->_get_table_name() . " (";
 
         // Adding in keys, storing values
         foreach ($this->to_array() as $key => $value) {
-          $query .= mysql_real_escape_string($key);
-          $query .= ",";
-          if($key == 'password') {
-            $value = md5($value);
-          }
-          $values_array[] = mysql_real_escape_string($value);
+            $query .= mysql_real_escape_string($key);
+            $query .= ",";
+            if ($key == 'password') {
+                $value = md5($value);
+            }
+            $values_array[] = mysql_real_escape_string($value);
         }
 
         // Getting rid of some dirt, adding some, and adding in values
@@ -63,18 +63,17 @@ class PHPProject_Database_Table_RowObject extends PHPProject_Object {
         $query .= ") VALUES ('";
         $query .= implode($values_array, "','");
         $query .= "');";
-        
+
         // The actual insert statement, in either case, a returnmessage is returned
-        if(!mysql_query($query)){
-              $return_message->success = false;
-              $return_message->message = "computer says no";
+        if (!mysql_query($query)) {
+            $return_message->success = false;
+            $return_message->message = "computer says no";
         }
-        
+
         $this->id = mysql_insert_id();
-        
+
         return $return_message;
     }
-
 
     // TODO transform uppercase->underscore separated words.
     protected function _get_table_name() {

@@ -92,4 +92,11 @@ class PHPProject_Database_Table  {
         $extracted_table_name = preg_replace('/\B([A-Z])/', '_$1', $extract_table_name);
         return strtolower($extracted_table_name);
     }
+    
+    protected function _get_set_name() {
+        
+    }
+    protected function _get_object_name() {
+        
+    }
 }
