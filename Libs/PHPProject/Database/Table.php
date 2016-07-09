@@ -33,6 +33,7 @@ class PHPProject_Database_Table  {
     public function set_query($query) {
         $result = mysql_query($query);
         $row = new $_set_class(mysql_fetch_assoc($result));
+        return $rows;
     }
     
     public function find($id){
@@ -44,6 +45,19 @@ class PHPProject_Database_Table  {
             echo $e->getMessage();
         }
         return $row;
+    }
+    
+    public function get_online_users() {
+        $query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
+        $select = mysql_query($query);
+        
+        $return_online_users = array();
+        
+        while ($rows = mysql_fetch_assoc($select)) {
+            $return_online_users[] = $rows;
+        }
+        
+        return $return_online_users;
     }
         
     public function find_max($column_name='id') {

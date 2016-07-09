@@ -39,7 +39,8 @@
             <?endif;?>
             <div class="row">
                 <button type="submit" class="col s12 moss-text bold pulse-text-shadow hvr-buzz" style="">create account</button>
-                <a href="login" class="form-link moss-text" style="">or click here to login</a>
+                <a href="register" class="form-link moss-text" style="">click here to create an account</a>
+                <a href="guest_login" class="form-link clouds-text" style="">sign in as guest</a>
             </div>
         </form>
     </div>

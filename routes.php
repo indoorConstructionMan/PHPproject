@@ -28,6 +28,21 @@ switch ($route) {
         $controller = new ChatController();
         $controller->index_action();
         break;
+    case "/search":
+        $controller = new ChatController();
+        $controller->search_action();
+        break;
+    case "/edit_user":
+        $controller = new ChatController();
+        $controller->edit_user_action();
+        break;
+    case "/view_online":
+        $controller = new ChatController();
+        $controller->view_online_action();
+        break;
+
+
+    
     case "/chat/ajax/get-messages":
         $controller = new ChatController();
         $controller->_get_messages_action();
