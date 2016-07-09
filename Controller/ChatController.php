@@ -9,6 +9,8 @@ class ChatController extends PHPProject_Controller {
     // TODO can't seem to access $_SESSION['view_vars']
     // debuggin required
     public function search_action() {
+        
+        var_dump("Search action is running dawg");
         $result = new PHPProject_ReturnMessage(array(
             "success" => false,
             "message" => "",
@@ -58,7 +60,7 @@ class ChatController extends PHPProject_Controller {
     }
     
     public function _get_messages_action() {
-        
+        var_dump("get messages action");
     }
 
     public function _new_message_action() {

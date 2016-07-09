@@ -1,0 +1,22 @@
+$(document).ready(function () {
+    // Attach a submit handler to the form
+    $("#searchForm").submit(function (event) {
+
+        // Stop form from submitting normally
+        event.preventDefault();
+
+        // Get some values from elements on the page:
+        var     $form = $(this),
+                term = $form.find("input[name='search_bar']").val(),
+                url = $form.attr("action");
+        
+
+        // Send the data using post
+        var posting = $.post(url, {search_bar: term});
+        
+        // Put the results in a div
+        posting.done(function (data) {
+            $( "#result" ).html( data );
+        });
+    });
+});

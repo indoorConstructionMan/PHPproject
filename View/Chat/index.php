@@ -4,11 +4,11 @@
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
         <!-- Dropdown Trigger -->
-        <li><a class='dropdown-button emerald btn white-text' href='#' data-activates='dropdown1'>Settings</a></li>
+        <li id="settings_bar"><a class='dropdown-button emerald btn white-text' href='#' data-activates='dropdown1'>Settings</a></li>
 
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content flow-text emerald-text'>
-            <li id="dropdownlist"><a href="view_online">View Online</a></li>
+            <li id="dropdownlist"><a href="view_online">Online Users</a></li>
             <li class="divider"></li>
             <li id="dropdownlist"><a href="edit_user">Edit Profile</a></li>
             <li class="divider"></li>
@@ -19,12 +19,13 @@
 </nav>
 
 
-<div style="height:250px">
+<div id="result" style="height:250px">
 
 </div>
-<form method="post" action="search" autocomplete="off" class="slidein-top-components">
+
+<form method="post" id="searchForm" action="/chat/ajax/search" autocomplete="off" class="slidein-top-components">
     <div class="row">
-        <div class="input-field col s6 offset-s3">
+        <div class="input-field col s6 offset-s3">          
             <input class="clouds-text moss-border bold flow-text" id="search_bar" type="text" name="search_bar">
             <label for="search_bar" class="moss-text center-align flow-text">Search by username or email</label>
         </div>
@@ -36,6 +37,8 @@
     <div class="form_message white-text col s12 center-align hvr-buzz-out-stay"><i class="inherit-font-size material-icons">error_outline</i><?= $_SESSION['view_vars']->message ?></div>
 </div>
 <?endif;?>
+
+<script type="text/javascript" src="/js/userSetup.js"></script>
 
 <!--
 <div class="container input-field col s12">
