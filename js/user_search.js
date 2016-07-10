@@ -14,7 +14,7 @@ $(document).ready(function () {
         $form.find("div[name='error_message']").val("");
         
         // Send the data using post
-        var posting = $.post(url, {search_bar: term});
+        var posting = $post(url, {search_bar: term});
         
         
         // Put the results in a div

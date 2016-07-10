@@ -53,10 +53,14 @@ class PHPProject_Database_Table {
 
         $return_online_users = array();
 
+        $row_count = 0;
+        
         while ($rows = mysql_fetch_assoc($select)) {
-            $return_online_users[] = $rows;
+            $return_online_users[] = $rows['username'];
+            $row_count+=1;
         }
-
+        $row_count-=1;
+        $return_online_users['row_count'] = $row_count;
         return $return_online_users;
     }
 

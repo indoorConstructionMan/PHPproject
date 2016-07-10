@@ -8,7 +8,7 @@
 
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content flow-text emerald-text'>
-            <li id="dropdownlist"><a href="view_online">Online Users</a></li>
+            <li id="dropdownlist_online_users"><a href="/chat/ajax/view_online">Online Users</a></li>
             <li class="divider"></li>
             <li id="dropdownlist"><a href="edit_user">Edit Profile</a></li>
             <li class="divider"></li>
@@ -32,9 +32,11 @@
 
 
 <div id="result"></div>
+<div id="view_online_result"></div>
 
 
 <script type="text/javascript" src="/js/user_search.js"></script>
+<script type="text/javascript" src="/js/view_online.js"></script>
 
 <!--
 <div class="container input-field col s12">

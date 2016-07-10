@@ -48,9 +48,8 @@ class ChatController extends PHPProject_Controller {
     public function _view_online_action() {
         $user_model = new Users();
         $online_users = $user_model->get_online_users();
-
-        var_dump($online_users);
         
+        $this->_generate_view_path(true, $online_users); 
     }
     
     public function _get_messages_action() {
