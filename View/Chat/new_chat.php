@@ -23,15 +23,17 @@
 <div id="result"></div>
 <div id="view_online_result"></div>
 
-<form method="post" id="searchForm" action="/chat/ajax/search" autocomplete="off" class="slidein-top-components">
-    <div class="row">
-        <div class="input-field col s6 offset-s3">          
-            <input class="clouds-text moss-border bold flow-text" id="search_bar" type="text" name="search_bar" required>
-            <label for="search_bar" class="moss-text center-align flow-text">Search by username or email</label>
-        </div>
-    </div>
-</form>
+<div id="messages_area" class="container moss input-field col s12 z-depth-3" style="height: 650px;">
+    
+</div>
+
+
+<div class="container input-field col s12">
+    <i class="material-icons prefix">mode_edit</i>
+    <textarea style="font-size: 30px" id="chat_messages_content" class="materialize-textarea belize-text moss-border bold flow-text"></textarea>
+    <label class="moss-text flow-text" for="textarea1" style="font-size: 20px">Click. Type. Press enter.</label>
+</div>
+
 
 <script type="text/javascript" src="/js/user_search.js"></script>
 <script type="text/javascript" src="/js/view_online.js"></script>
-

@@ -29,6 +29,14 @@ switch ($route) {
         $controller = new ChatController();
         $controller->index_action();
         break;
+    case "/chat/new_chat":
+        $controller = new ChatController();
+        $controller->new_chat_action();
+        break;
+    case "/chat/_new_message":
+        $controller = new ChatController();
+        $controller->_new_message_action();
+        break;
     case "/chat/ajax/search":
         $controller = new ChatController();
         $controller->_search_action();
@@ -40,6 +48,10 @@ switch ($route) {
     case "/chat/ajax/view_online":
         $controller = new ChatController();
         $controller->_view_online_action();
+        break;
+    case "/main_menu":
+        $controller = new IndexController();
+        $controller->index_action();
         break;
     
     
@@ -67,7 +79,6 @@ switch ($route) {
         break;
     
     default:
-        var_dump("default");
         $controller = new IndexController();
         $controller->index_action();
         break;

@@ -57,7 +57,13 @@ class ChatController extends PHPProject_Controller {
     }
 
     public function _new_message_action() {
-        
+        var_dump("Testing new message_action");
+    }
+    
+    // need to save to chats table the id's of the two people involved.
+    public function new_chat_action() {
+        $this->_generate_view_path(true);
+        return;
     }
 
 }

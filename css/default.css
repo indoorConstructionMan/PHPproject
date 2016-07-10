@@ -149,6 +149,9 @@
     border-radius: 50%;
     padding: auto;
 }
+.padding-leftside {
+    padding-left: 1% !important;
+}
 .padding1 {
     padding: 1% !important;
 }
@@ -411,6 +414,11 @@ button[type="submit"] {
 button[type="submit"]:hover {
     color: #ffffff !important;
 }
+
+
+.blue {
+    background: #3290BE;
+}
 .form-link {
     display: block;
     width: 100%;
@@ -420,4 +428,7 @@ button[type="submit"]:hover {
 }
 .form-link:hover  {
     color: #ffffff !important;
+}
+.orange {
+    background: #FFA339;
 }
