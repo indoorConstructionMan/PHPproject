@@ -25,27 +25,23 @@ switch ($route) {
 
     
     //Chats Controller
-    case "/chat/ajax/search":
-        var_dump("search");
-        $controller = new ChatController();
-        $controller->search_action();
-        break;
-    case "/edit_user":
-        var_dump("edit user");
-        $controller = new ChatController();
-        $controller->edit_user_action();
-        break;
-    case "/view_online":
-        var_dump("view_online");
-        $controller = new ChatController();
-        $controller->view_online_action();
-        break;
     case "/chat":
-        var_dump($route);
         $controller = new ChatController();
         $controller->index_action();
         break;
-
+    case "/chat/ajax/search":
+        $controller = new ChatController();
+        $controller->_search_action();
+        break;
+    case "/edit_user":
+        $controller = new ChatController();
+        $controller->_edit_user_action();
+        break;
+    case "/view_online":
+        $controller = new ChatController();
+        $controller->_view_online_action();
+        break;
+    
     
     case "/chat/ajax/get-messages":
         $controller = new ChatController();

@@ -8,12 +8,11 @@ class ChatController extends PHPProject_Controller {
 
     // TODO can't seem to access $_SESSION['view_vars']
     // debuggin required
-    public function search_action() {
+    public function _search_action() {
         
-        var_dump("Search action is running dawg");
         $result = new PHPProject_ReturnMessage(array(
             "success" => false,
-            "message" => "",
+            "message" => null,
             "data" => array()
         ));
         
@@ -24,34 +23,29 @@ class ChatController extends PHPProject_Controller {
             
             $result->success = true;
             $user_found->data->password = "";
-            $result->data = $user_found;
+            $result->data = $user_found->data;
             
             if ($result->success) {
-                var_dump("Need to swap out div for another div.");
-                //$this->_redirect();
-                //return;
-            }else {
-                $result->success = false;
-                $result->message = "Username or email does not exit. Try again.";
-                return $result;
+                $this->_generate_view_path(true, $result);
+                return;
             }
-            
-        } else {
-            $result->success = false;
-            $result->message = "Username or email does not exit. Try again.";
-            $_SESSION['view_vars']->message = $result->message;   
-        }
-        $this->_redirect();
+  
+        } 
+        
+        $result->success = false;
+        $result->message = "Username or email does not exit. Try again.";
+        
+        $this->_generate_view_path(true, $result);
         return;
     }
 
-    public function edit_user_action() {
+    public function _edit_user_action() {
         var_dump("Edit user placeholder");
     }
 
     // Need to clean up this function, spits back correct results from db.
     // Still need to exclude guest_xxxxx formatting.
-    public function view_online_action() {
+    public function _view_online_action() {
         $user_model = new Users();
         $online_users = $user_model->get_online_users();
 
