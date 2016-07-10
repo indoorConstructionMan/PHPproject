@@ -145,7 +145,10 @@
 .bold {
     font-weight: bold !important;
 }
-
+.circle {
+    border-radius: 50%;
+    padding: auto;
+}
 .padding1 {
     padding: 1% !important;
 }
