@@ -26,8 +26,8 @@
                                     <tbody>
                                         <tr>
                                             <td style="text-align: center;"><?= $_SESSION['view_vars']->data->username ?></td>
-                                            <td style="text-align: center;"><i class="col s4 mall material-icons moss emerald-text icon">thumb_down</i></td>
-                                            <td style="text-align: center;"><a href="logout"><i class="col s4 small material-icons moss emerald-text icon">chat</i></a></td>
+                                            <td style="text-align: center;"><i class="s4 small material-icons moss emerald-text icon">thumb_down</i></td>
+                                            <td style="text-align: center;"><a href="logout"><i class="s4 small material-icons moss emerald-text icon">chat</i></a></td>
                                         </tr>
                                     </tbody>
                                 <? endif; ?>
