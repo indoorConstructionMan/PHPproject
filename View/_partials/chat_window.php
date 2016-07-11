@@ -1,6 +1,6 @@
 <div id="chat_window_<?= $chat_window->id ?>" class="chat_window full-height-100 chat-tab-fix">
     <div class="chat_window_output full-height-80 clouds white-border border15 padding1">
-        <?if (is_array($chat_window->messages) && !empty($chat_window->messages)) :?>
+        <?if (isset($chat_window->messages) && !empty($chat_window->messages)) :?>
             <?foreach ($chat_window->messages as $message) :?>
                 <?require("/View/_partials/chat_message.php");?>
             <?endforeach;?>
