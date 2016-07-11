@@ -23,6 +23,10 @@ switch ($route) {
         $controller = new IndexController();
         $controller->guest_login_action();
         break;
+    case "/edit_user":
+        $controller = new IndexController();
+        $controller->edit_user_action();
+        break;
 
 
     //Chats Controller
@@ -41,10 +45,6 @@ switch ($route) {
     case "/chat/ajax/search":
         $controller = new ChatController();
         $controller->_search_action();
-        break;
-    case "/edit_user":
-        $controller = new ChatController();
-        $controller->edit_user_action();
         break;
     case "/chat/ajax/view_online":
         $controller = new ChatController();

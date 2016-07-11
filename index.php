@@ -1,6 +1,6 @@
 <?php
 // hide all warning and notice level messsages
-error_reporting(E_ERROR);
+//error_reporting(E_ERROR);
 // enable CORS https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
 header("Access-Control-Allow-Origin: *");
 try {

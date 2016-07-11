@@ -14,6 +14,17 @@ class IndexController extends PHPProject_Controller {
             $this->_redirect('login');
         }
     }
+    
+    public function edit_user_action() {
+        //var_dump($_FILES["fileToUpload"]["name"]);
+        //var_dump($_POST);
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->_redirect('', 'chat');
+        } else {
+            $this->_generate_view_path(true);         
+        }
+        return;
+    }
 
     public function login_action() {
         $result = $this->_login_or_register(true, $_POST);

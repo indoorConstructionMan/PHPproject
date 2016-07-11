@@ -38,16 +38,16 @@
                     <label for="username" class="moss-text flow-text">username <i>3-20 characters</i></label>
                 </div>
             </div>
-            <div class="no-display row" id="new_password">
+            <div class="no-display row" id="new_password_row">
                 <div class="input-field col s12">
-                    <input class="clouds-text moss-border bold flow-text" type="password" name="password" required>
-                    <label for="password" class="moss-text flow-text">new password</label>
+                    <input class="clouds-text moss-border bold flow-text" id="new_password" type="password" name="new_password" >
+                    <label for="new_password" class="moss-text flow-text">new password</label>
                 </div>
             </div>
-            <div class="no-display row" id="new_password_confirm" >
+            <div class="no-display row" id="new_password_confirm_row">
                 <div class="input-field col s12">
-                    <input class="clouds-text moss-border bold flow-text" type="password" name="password" required>
-                    <label for="password" class="moss-text flow-text">new password confirm</label>
+                    <input class="clouds-text moss-border bold" id="new_password_confirm" type="password" name="new_password_confirm" >
+                    <label for="new_password_confirm" class="moss-text ">new password confirm</label>
                 </div>
             </div>
             <div class="row">
@@ -61,7 +61,7 @@
                 <a href="#" id="add_password_fields" class="col s6 form-link moss-text">change your password</a>
             </div>
 
-            <button type="submit" value="edit_user" name="submit" class="col s12 moss-text bold pulse-text-shadow">update profile</button>
+            <button type="submit" value="/edit_user" name="submit" class="col s12 moss-text bold pulse-text-shadow">update profile</button>
         </form>
     </div>
 </div>
