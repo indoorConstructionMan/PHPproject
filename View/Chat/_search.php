@@ -1,10 +1,12 @@
 <? if (!is_null($_SESSION['view_vars']->message)) : ?>
     <div class="row">
-        <div id="error_message" name="error_message" class="form_message white-text col no-float s10 margin-auto center-align hvr-buzz-out-stay"><i class="inherit-font-size material-icons">error_outline</i><?= $_SESSION['view_vars']->message ?></div>
+        <div id="error_message" name="error_message" class="form_message white-text col no-float s10 margin-auto regular-font-size center-align hvr-buzz-out-stay"><i class="inherit-font-size material-icons">error_outline</i><?= $_SESSION['view_vars']->message ?></div>
     </div>
 <? else: ?>
-
-    <? if (isset($_SESSION['view_vars']->data->username)) : ?>
+<ul class="margin-top-none">
+    <?$user = $_SESSION['view_vars']->data; require("/View/_partials/list_user.php");?>
+</ul>
+    <? if (isset($_SESSION['view_vars']->data->asdasd)) : ?>
 
         <div class="row">
             <div class="col s12">

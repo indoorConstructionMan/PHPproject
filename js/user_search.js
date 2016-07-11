@@ -20,7 +20,7 @@ $(document).ready(function () {
         // Put the results in a div
         posting.done(function (data) {
             console.log(data);
-            $( "#result" ).html( data );
+            $( "#search_result" ).html( data ).removeClass("no_height");
         });
     });
 });

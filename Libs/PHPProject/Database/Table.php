@@ -11,6 +11,8 @@ class PHPProject_Database_Table {
 
     public function __construct() {
         $this->table_name = $this->_get_table_name();
+        $this->_get_object_name();
+        $this->_get_set_name();
     }
 
     public function get_all_rows() {
@@ -26,13 +28,16 @@ class PHPProject_Database_Table {
 
     public function object_query($query) {
         $result = mysql_query($query);
-        $row = new $_object_class(mysql_fetch_assoc($result));
+        $row = new $this->_object_class(mysql_fetch_assoc($result));
         return $row;
     }
 
     public function set_query($query) {
         $result = mysql_query($query);
-        $row = new $_set_class(mysql_fetch_assoc($result));
+        $rows = new $this->_set_class(array());
+        while ($row = mysql_fetch_assoc($result)) {
+            $rows->push(new $this->_object_class($row));
+        }
         return $rows;
     }
 
@@ -48,7 +53,7 @@ class PHPProject_Database_Table {
     }
 
     public function get_online_users() {
-        $query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
+        /*$query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
         $select = mysql_query($query);
 
         $return_online_users = array();
@@ -61,7 +66,11 @@ class PHPProject_Database_Table {
         }
         $row_count-=1;
         $return_online_users['row_count'] = $row_count;
-        return $return_online_users;
+        return $return_online_users;*/
+        
+        $query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
+        $users = $this->set_query($query);
+        return $users;
     }
 
     public function find_max($column_name = 'id') {
@@ -119,11 +128,15 @@ class PHPProject_Database_Table {
     }
 
     protected function _get_set_name() {
-        
+        $set_class = get_class($this) . "_Set";
+        $this->_set_class = $set_class;
+        return $this->_set_class;
     }
 
     protected function _get_object_name() {
-        
+        $object_class = get_class($this) . "_Object";
+        $this->_object_class = $object_class;
+        return $this->_object_class;
     }
 
 }

@@ -34,7 +34,6 @@ switch ($route) {
         $controller->new_chat_action();
         break;
     case "/chat/ajax/new_message":
-        var_dump("New message");
         $controller = new ChatController();
         $controller->_new_message_action();
         break;

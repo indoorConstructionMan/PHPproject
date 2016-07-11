@@ -1,4 +1,4 @@
-<nav class="nav-wrapper lime-green-nav slidein-top">    
+<nav class="nav-wrapper moss no-shadow">    
 
     <a href="#" class="flow-text clouds-text padding-leftside left"><b>Welcome  <?= $_SESSION['chatapp_user']->username ?>!</b></a>
 
@@ -18,18 +18,33 @@
     </ul>
  
 </nav>
-
-<div id="result"></div>
-<div id="view_online_result"></div>
-
-<form method="post" id="searchForm" action="/chat/ajax/search" autocomplete="off" class="slidein-top-components">
-    <div class="row">
-        <div class="input-field col s6 offset-s3">          
-            <input class="clouds-text moss-border bold flow-text" id="search_bar" type="text" name="search_bar" required>
-            <label for="search_bar" class="moss-text center-align flow-text">Search by username or email</label>
+<div class="row">
+    <div class="col s10 full-height">
+        <?$chat_id = $_SESSION['view_vars']->chat_id; require('/View/_partials/chat_window.php');?>
+    </div>
+    <div class="col s2 myrtle full-height">
+        <div id="search">
+            <h5 class="emerald-text margin-bottom-none padding3">search users</h5>
+            <form method="post" id="searchForm" action="/chat/ajax/search" autocomplete="off" class="">
+                <div class="input-field padding3 margin-top-none">          
+                    <input class="clouds-text emerald-border bold flow-text regular-font-size" id="search_bar" type="text" name="search_bar" required>
+                    <label for="search_bar" class="emerald-text center-align flow-text regular-font-size padding3">Search by username or email</label>
+                </div>
+            </form>
+            <div id="search_result" class="transition-all"></div>
+        </div>
+        <div class="divider moss"></div>
+        <div id="online_users">
+            <h5 class="emerald-text margin-bottom-none padding3">online users</h5>
+            <ul class="margin-top-none">
+            <?foreach ($_SESSION['view_vars']->online_users as $key => $user) :?>
+                <?require("/View/_partials/list_user.php");?>
+            <?endforeach;?>
+            </ul>
         </div>
     </div>
-</form>
+    
+</div>
 
 <div>
     

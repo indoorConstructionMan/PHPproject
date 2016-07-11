@@ -41,6 +41,8 @@ if (stripos($_SERVER['PATH_INFO'], "ajax") === false) :
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <!-- Materialize CSS Framework (JavaScript component) -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+        <!-- chat -->
+        <script src="/js/chat.js"></script>
     </head>
     
     <body class="emerald">

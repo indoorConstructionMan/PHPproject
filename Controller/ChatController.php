@@ -3,7 +3,9 @@
 class ChatController extends PHPProject_Controller {
 
     public function index_action() {
-        $this->_generate_view_path(true);
+        $user_model = new Users();
+        $online_users = $user_model->get_online_users();
+        $this->_generate_view_path(true, array("online_users" => $online_users, "chat_id" => uniqid()));
     }
 
     // TODO can't seem to access $_SESSION['view_vars']
@@ -33,7 +35,7 @@ class ChatController extends PHPProject_Controller {
         } 
         
         $result->success = false;
-        $result->message = "Username or email does not exit. Try again.";
+        $result->message = "no user found";
         
         $this->_generate_view_path(true, $result);
         return;
