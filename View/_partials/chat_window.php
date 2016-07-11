@@ -10,7 +10,7 @@
             </ul>
         </div>
         <div id="chat_window_<?=$chat_id?>" class="chat_window full-height-100 chat-tab-fix">
-            <div class="chat_window_output full-height-80 clouds padding1">
+            <div class="chat_window_output full-height-80 white padding1">
 
             </div>
             <div class="chat_window_input full-height-20">
@@ -18,7 +18,7 @@
             </div>
         </div>   
         <div id="chat_window_2" class="chat_window full-height-100 chat-tab-fix">
-            <div class="chat_window_output full-height-80 clouds padding1">
+            <div class="chat_window_output full-height-80 white padding1">
                 
             </div>
             <div class="chat_window_input full-height-20">
@@ -26,7 +26,7 @@
             </div>
         </div> 
         <div id="chat_window_3" class="chat_window full-height-100 chat-tab-fix">
-            <div class="chat_window_output full-height-80 clouds padding1">
+            <div class="chat_window_output full-height-80 white padding1">
                 
             </div>
             <div class="chat_window_input full-height-20">
@@ -34,7 +34,7 @@
             </div>
         </div> 
         <div id="chat_window_4" class="chat_window full-height-100 chat-tab-fix">
-            <div class="chat_window_output full-height-80 clouds padding1">
+            <div class="chat_window_output full-height-80 white padding1">
                 
             </div>
             <div class="chat_window_input full-height-20">
