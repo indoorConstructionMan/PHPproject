@@ -12,7 +12,8 @@ try {
     session_start();
     // route to appropriate controller action
     $GLOBALS['config'] = array(
-        "site_url" => "http://dubs.stink.com"
+        "site_url" => "http://dubs.stink.com",
+        "general_chat_id" => 1
     );
 } catch(Exception $e) {
     die($e->getMessage());

@@ -198,8 +198,8 @@ textarea { resize: none; }
     border-radius: 50%;
     padding: auto;
 }
-.padding-leftside {
-    padding-left: 1% !important;
+.no-padding {
+    padding: none !important;
 }
 .padding1 {
     padding: 1% !important;
@@ -212,7 +212,8 @@ textarea { resize: none; }
 }
 .padding3 {
     padding: 3% !important;
-}.padding4 {
+}
+.padding4 {
     padding: 4% !important;
 }
 .padding5 {
@@ -282,6 +283,9 @@ textarea { resize: none; }
 .no-display {
     display: none;
 }
+.fixed-display {
+    display: fixed;
+}
 .icon {
     font-size: 3em;
     padding: 4%;
@@ -289,6 +293,12 @@ textarea { resize: none; }
     border-radius: 50%;
     //border: 3px solid;
     box-shadow: 0 0 1px #27ae60, 0 0 1px #27ae60, 0 0 1px #27ae60;
+}
+.tab-chat-fix {
+    margin-bottom: -48px;
+}
+.chat-tab-fix {
+    padding-top: 48px;
 }
 .form_message {
     font-weight: bold;
