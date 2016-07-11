@@ -1,6 +1,7 @@
 <?php
 
 class PHPProject_Set implements SeekableIterator, Countable, ArrayAccess {
+
     /**
      * The original data for each row.
      *
@@ -27,8 +28,7 @@ class PHPProject_Set implements SeekableIterator, Countable, ArrayAccess {
      *
      * @param array $params
      */
-    public function __construct(array $params)
-    {
+    public function __construct(array $params) {
         if (isset($params['data'])) {
             $this->_data = $params['data'];
         }
@@ -44,8 +44,7 @@ class PHPProject_Set implements SeekableIterator, Countable, ArrayAccess {
      *
      * @return array
      */
-    public function __sleep()
-    {
+    public function __sleep() {
         return array('_data', '_pointer', '_count');
     }
 
@@ -54,8 +53,8 @@ class PHPProject_Set implements SeekableIterator, Countable, ArrayAccess {
      *
      * @return void
      */
-    public function __wakeup()
-    {
+    public function __wakeup() {
+        
     }
 
     /**
@@ -65,18 +64,16 @@ class PHPProject_Set implements SeekableIterator, Countable, ArrayAccess {
      *
      * @return void
      */
-    public function init()
-    {
+    public function init() {
+        
     }
-	
-    public function rewind()
-    {
+
+    public function rewind() {
         $this->_pointer = 0;
         return $this;
     }
 
-    public function current()
-    {
+    public function current() {
         if ($this->valid() === false) {
             return null;
         }
@@ -84,29 +81,24 @@ class PHPProject_Set implements SeekableIterator, Countable, ArrayAccess {
         return $this->_data[$this->_pointer];
     }
 
-    public function key()
-    {
+    public function key() {
         return $this->_pointer;
     }
 
-    public function next()
-    {
+    public function next() {
         ++$this->_pointer;
-		return $this;
+        return $this;
     }
 
-    public function valid()
-    {
+    public function valid() {
         return $this->_pointer < $this->_count;
     }
 
-    public function count()
-    {
+    public function count() {
         return $this->_count;
     }
 
-    public function seek($position)
-    {
+    public function seek($position) {
         $position = (int) $position;
         if ($position < 0 || $position >= $this->_count) {
             require_once 'Spark/Set/Exception.php';
@@ -116,35 +108,31 @@ class PHPProject_Set implements SeekableIterator, Countable, ArrayAccess {
         return $this;
     }
 
-    public function offsetExists($offset)
-    {
+    public function offsetExists($offset) {
         return isset($this->_data[(int) $offset]);
     }
 
-    public function offsetGet($offset)
-    {
+    public function offsetGet($offset) {
         $this->_pointer = (int) $offset;
 
         return $this->current();
     }
 
-    public function offsetSet($offset, $value)
-    {
+    public function offsetSet($offset, $value) {
+        
     }
 
-    public function offsetUnset($offset)
-    {
+    public function offsetUnset($offset) {
+        
     }
-    
-    public function push(PHPProject_Object $object) 
-    {
+
+    public function push(PHPProject_Object $object) {
         $this->_data[] = $object;
         $this->_count = count($this->_data);
     }
 
-    public function to_array()
-    {
+    public function to_array() {
         return $this->_data;
     }
-}
 
+}

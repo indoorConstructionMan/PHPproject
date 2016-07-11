@@ -1,10 +1,11 @@
 <?php
+
 // grab the portion of the current request url after .domain (ie. /controller/action for hello.com/controller/action)
 $route = str_replace("params=", "", $_SERVER['PATH_INFO']);
 
 // checks the url and calls the appropriate controller action
 switch ($route) {
-    
+
     // Index Controller
     case "/register":
         $controller = new IndexController();
@@ -23,7 +24,7 @@ switch ($route) {
         $controller->guest_login_action();
         break;
 
-    
+
     //Chats Controller
     case "/chat":
         $controller = new ChatController();
@@ -53,8 +54,8 @@ switch ($route) {
         $controller = new IndexController();
         $controller->index_action();
         break;
-    
-    
+
+
     case "/chat/ajax/get-messages":
         $controller = new ChatController();
         $controller->_get_messages_action();
@@ -63,7 +64,7 @@ switch ($route) {
         $controller = new ChatController();
         $controller->_new_message_action();
         break;
-        
+
     // Spotify Controller
     case "/spotify/auth":
         $controller = new SpotifyController();
@@ -77,7 +78,7 @@ switch ($route) {
         $controller = new SpotifyController();
         $controller->auth_action();
         break;
-    
+
     default:
         $controller = new IndexController();
         $controller->index_action();

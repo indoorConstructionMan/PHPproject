@@ -22,10 +22,10 @@ class Users_Object extends PHPProject_Database_Table_RowObject {
         // hashing it out (password)
         $hashed_password = md5($password);
 
-        if($new_user) {
+        if ($new_user) {
             $this->password = md5($this->password);
         }
-      
+
         // see if the password is correct
         if ($hashed_password != $this->password) {
             $return->message = "Password or email provided is incorrect.";
@@ -35,7 +35,7 @@ class Users_Object extends PHPProject_Database_Table_RowObject {
         // Update database
         $this->is_online = TRUE;
         $this->update();
-        
+
         // all good, log them in
         $return->data = $this;
         $return->success = true;

@@ -1,7 +1,7 @@
 <?php
 
 class Users extends PHPProject_Database_Table {
-    
+
     protected $_object_class = "Users_Object";
     protected $_set_class = "User_Set";
 
@@ -15,25 +15,25 @@ class Users extends PHPProject_Database_Table {
         }
         return $user;
     }
-    
+
     public function setup_guest_data() {
         // User_Object constructor data
         $guest_data = array();
-        
+
         // Determine the highest value in database, add one to value.
         $number = $this->find_max();
         $number += 1;
-        
+
         // Assign values for database 
         $guest_data['id'] = null;
         $guest_data['username'] = "guest_" . $number;
         $guest_data['email'] = "guest@" . $number . ".com";
         $guest_data['password'] = "";
         $guest_data['is_online'] = False;
-        
+
         return $guest_data;
     }
-    
+
     public function find_by($value) {
         if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
             // check for email
@@ -42,15 +42,15 @@ class Users extends PHPProject_Database_Table {
             // check for username
             $result = $this->find_by_username($value);
         }
-        
+
         return $result;
     }
-    
+
     public function find_by_email($email) {
 
         $user = $this->find_user($email, 'email');
 
-        if ($user){
+        if ($user) {
             return new PHPProject_ReturnMessage(array(
                 'success' => true,
                 'data' => $user
@@ -67,7 +67,7 @@ class Users extends PHPProject_Database_Table {
     public function find_by_username($username) {
 
         $user = $this->find_user($username, 'username');
-        if ($user){
+        if ($user) {
             return new PHPProject_ReturnMessage(array(
                 'success' => true,
                 'data' => $user
@@ -80,7 +80,7 @@ class Users extends PHPProject_Database_Table {
             ));
         }
     }
-    
+
     public function get_online_users() {
         $query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
         $users = $this->set_query($query);
@@ -89,11 +89,10 @@ class Users extends PHPProject_Database_Table {
 
     public function login_user($data) {
         // sanitization
-        if(isset($data['email']) && isset($data['password'])){
+        if (isset($data['email']) && isset($data['password'])) {
 
             $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
             $data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
-
         } else {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
@@ -123,19 +122,18 @@ class Users extends PHPProject_Database_Table {
             return $find_result;
         }
     }
-    
+
     public function register_user($data) {
 
         // makes sure all fields have been set, and grabs and sanitizes them.
-        if(isset($data['email']) && isset($data['username']) &&
-           isset($data['password']) && isset($data['password_confirm'])){
+        if (isset($data['email']) && isset($data['username']) &&
+                isset($data['password']) && isset($data['password_confirm'])) {
 
             $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
             $data['username'] = filter_var($data['username'], FILTER_SANITIZE_STRING);
             $data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
             $data['password_confirm'] = filter_var($data['password_confirm'], FILTER_SANITIZE_STRING);
             $data['is_online'] = FALSE;
-
         } else {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
@@ -145,7 +143,7 @@ class Users extends PHPProject_Database_Table {
         }
 
         // Validation of email field
-        if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
                 'message' => "email invalid.",
@@ -154,7 +152,7 @@ class Users extends PHPProject_Database_Table {
         }
 
         // Checks to make sure password is between 3-20 characters
-        if(strlen($data['username']) < 3 || strlen($data['username']) > 20) {
+        if (strlen($data['username']) < 3 || strlen($data['username']) > 20) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
                 'message' => "username length must be between 3 and 20 characters",
@@ -163,23 +161,23 @@ class Users extends PHPProject_Database_Table {
         }
 
         // Makes sure that password and password_confirm are both the same.
-        if(strcmp($data['password'], $data['password_confirm'])) {
+        if (strcmp($data['password'], $data['password_confirm'])) {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
                 'message' => "passwords don't match",
                 'data' => $data
             ));
         }
-        
+
         unset($data['password_confirm']);
 
         // All data has been validated/sanitized. Now check if user exists.
         $find_result = $this->find_by_email($data['email']);
 
-        if($find_result->success && $find_result->data instanceof Users_Object) {
+        if ($find_result->success && $find_result->data instanceof Users_Object) {
             $login_result = $find_result->data->login($data['password']);
 
-            if($login_result->success) {
+            if ($login_result->success) {
                 return $login_result;
             } else {
                 return new PHPProject_ReturnMessage(array(
@@ -188,13 +186,11 @@ class Users extends PHPProject_Database_Table {
                     'data' => $data
                 ));
             }
-            
-            
         } else {
-            
+
             // check if the username is already in use
             $find_result = $this->find_by_username($data['username']);
-            
+
             if ($find_result->success && $find_result->data instanceof Users_Object) {
                 return new PHPProject_ReturnMessage(array(
                     'success' => false,
@@ -202,13 +198,13 @@ class Users extends PHPProject_Database_Table {
                     'data' => $data
                 ));
             }
-            
+
             $user = new Users_Object($data);
             $save_result = $user->save();
-            if($save_result->success) {
+            if ($save_result->success) {
                 $login_result = $user->login($data['password'], true);
-                
-                if($login_result->success) {
+
+                if ($login_result->success) {
                     return $login_result;
                 } else {
                     return new PHPProject_ReturnMessage(array(
@@ -217,7 +213,6 @@ class Users extends PHPProject_Database_Table {
                         'data' => $data
                     ));
                 }
-                
             } else {
                 return new PHPProject_ReturnMessage(array(
                     'success' => false,
@@ -227,4 +222,5 @@ class Users extends PHPProject_Database_Table {
             }
         }
     }
+
 }

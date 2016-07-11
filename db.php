@@ -1,4 +1,5 @@
 <?php
+
 // connect to our mysql database server
 $link = mysql_connect('localhost', 'root');
 if (!$link) {

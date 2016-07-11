@@ -9,5 +9,5 @@ class PHPProject_ReturnMessage extends PHPProject_Object {
     )) {
         parent::__construct($data);
     }
-}
 
+}

@@ -1,17 +1,17 @@
 <?php
 
 class PHPProject_Controller {
-    
+
     const VIEWS_PATH = "View/";
-    
+
     protected function _get_controller_name() {
-        return str_replace('Controller', '',  get_class($this));
+        return str_replace('Controller', '', get_class($this));
     }
-    
+
     protected function _get_action_name($nested_level = 1) {
         return str_replace('_action', '', debug_backtrace()[$nested_level]['function']);
     }
-    
+
     protected function _generate_view_path($output_include = false, $view_vars = null) {
         // clean view vars from session
         $_SESSION['view_vars'] = array();
@@ -29,7 +29,7 @@ class PHPProject_Controller {
             return $path;
         }
     }
-    
+
     protected function _redirect($action, $controller = null) {
         if (is_null($controller)) {
             header("Location: " . $GLOBALS['config']['site_url'] . "/" . $action);
@@ -41,7 +41,7 @@ class PHPProject_Controller {
             }
         }
     }
-    
+
     protected function _is_logged_in($redirect_loggedin = null, $redirect_notloggedin = null) {
         if (isset($_SESSION['chatapp_user']) && $_SESSION['chatapp_user'] instanceof Users_Object) {
             // they are logged in
@@ -59,6 +59,5 @@ class PHPProject_Controller {
             }
         }
     }
-    
-}
 
+}

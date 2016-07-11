@@ -1,6 +1,6 @@
 <nav class="nav-wrapper moss no-shadow">    
 
-    <a href="#" class="flow-text clouds-text padding-leftside left"><b>Welcome  <?= $_SESSION['chatapp_user']->username ?>!</b></a>
+    <a href="#" class="flow-text clouds-text padding1-left left"><b>Welcome  <?= $_SESSION['chatapp_user']->username ?>!</b></a>
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
         <!-- Dropdown Trigger -->
@@ -8,19 +8,19 @@
 
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content dropdown-menu-color  clouds-text flow-text emerald-text'>
-            <li class='dropdown-text-color dropdown-menu-color  clouds-text flow-text ' id="dropdownlist_online_users" ><a href="/chat/ajax/view_online" style="font-size: 18px;">Online Users</a></li>
-            <li class="divider dropdown-divider-color"></li>
-
             <li id="dropdownlist"><a href="/edit_user" class="dropdown-text-color" style="font-size: 18px;">Edit Profile</a></li>
             <li class="divider dropdown-divider-color"></li>
             <li id="dropdownlist"><a href="/logout" class="dropdown-text-color" style="font-size: 18px;">Logout</a></li>
         </ul>
     </ul>
- 
+
 </nav>
 <div class="row">
     <div class="col s10 full-height">
-        <?$chat_id = $_SESSION['view_vars']->chat_id; require('/View/_partials/chat_window.php');?>
+        <?
+        $chat_id = $_SESSION['view_vars']->chat_id;
+        require('/View/_partials/chat_window.php');
+        ?>
     </div>
     <div class="col s2 myrtle full-height">
         <div id="search">
@@ -37,19 +37,18 @@
         <div id="online_users">
             <h5 class="emerald-text margin-bottom-none padding3">online users</h5>
             <ul class="margin-top-none">
-            <?foreach ($_SESSION['view_vars']->online_users as $key => $user) :?>
-                <?require("/View/_partials/list_user.php");?>
-            <?endforeach;?>
+                <? foreach ($_SESSION['view_vars']->online_users as $key => $user) : ?>
+                    <? require("/View/_partials/list_user.php"); ?>
+                <? endforeach; ?>
             </ul>
         </div>
     </div>
-    
+
 </div>
 
 <div>
-    
+
 </div>
 
 <script type="text/javascript" src="/js/user_search.js"></script>
 <script type="text/javascript" src="/js/view_online.js"></script>
-
