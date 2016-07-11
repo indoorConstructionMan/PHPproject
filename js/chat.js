@@ -32,9 +32,9 @@ Chat = {
                 console.log(result);
                 // populate the chat output
                 $output.append(result);
-                $output.animate({
+                /*$output.animate({
                     scrollTop: $('#chat_window_' + chat_id + ' .chat_message:last-child').offset().top
-                }, 200);
+                }, 200);*/
             });
         }
     }
