@@ -43,7 +43,7 @@ switch ($route) {
         break;
     case "/edit_user":
         $controller = new ChatController();
-        $controller->_edit_user_action();
+        $controller->edit_user_action();
         break;
     case "/chat/ajax/view_online":
         $controller = new ChatController();

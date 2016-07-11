@@ -39,8 +39,9 @@ class ChatController extends PHPProject_Controller {
         return;
     }
 
-    public function _edit_user_action() {
-        var_dump("Edit user placeholder");
+    public function edit_user_action() {
+        $this->_generate_view_path(true);
+        return;
     }
 
     // Need to clean up this function, spits back correct results from db.

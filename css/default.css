@@ -123,11 +123,31 @@
 .turquoise-border {
     border-color: #1abc9c !important;
 }
+.dropdown-text-color {
+    font-size: 18px;
+    color: #FFFFFF !important;
+}
+
+.lime-green-nav {
+    background: #3290BE;
+}
+
+.blue-color-nav {
+    background: #3290BE;
+}
+
+.dropdown-menu-color {
+    background: #2ecc71;
+}
+
+.dropdown-divider-color {
+    background: #3290BE;
+}
 .emerald {
     background: #2ecc71 !important;
 }
 .emerald-text {
-    color:  #2ecc71 !important;
+    color:  #2ECC73 !important;
 }
 .emerald-border {
     border-color: #2ecc71 !important;
