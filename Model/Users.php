@@ -80,6 +80,12 @@ class Users extends PHPProject_Database_Table {
             ));
         }
     }
+    
+    public function get_online_users() {
+        $query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
+        $users = $this->set_query($query);
+        return $users;
+    }
 
     public function login_user($data) {
         // sanitization

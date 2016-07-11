@@ -52,27 +52,6 @@ class PHPProject_Database_Table {
         return $row;
     }
 
-    public function get_online_users() {
-        /*$query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
-        $select = mysql_query($query);
-
-        $return_online_users = array();
-
-        $row_count = 0;
-        
-        while ($rows = mysql_fetch_assoc($select)) {
-            $return_online_users[] = $rows['username'];
-            $row_count+=1;
-        }
-        $row_count-=1;
-        $return_online_users['row_count'] = $row_count;
-        return $return_online_users;*/
-        
-        $query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
-        $users = $this->set_query($query);
-        return $users;
-    }
-
     public function find_max($column_name = 'id') {
         $select = "SELECT MAX(" . $column_name . ") FROM " . $this->_get_table_name() . ";";
         $return = mysql_fetch_assoc(mysql_query($select));
