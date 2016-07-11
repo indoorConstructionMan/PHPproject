@@ -16,7 +16,7 @@
 
 </nav>
 <div class="row">
-    <div class="col s10 full-height">
+    <div class="col s10 full-height no-padding">
         <link rel="stylesheet" href="/css/chat.css">
         <div id="chat_area" class="padding1 full-height-100">
             <div class="chat_tabs full-height-100">
