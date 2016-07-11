@@ -279,6 +279,9 @@ textarea { resize: none; }
 .full-height-20 {
     height: 20%;
 }
+.no-display {
+    display: none;
+}
 .icon {
     font-size: 3em;
     padding: 4%;
