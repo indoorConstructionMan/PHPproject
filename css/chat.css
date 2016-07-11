@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 11, 2016, 3:18:24 PM
+    Author     : Mark
+*/
+
+/*OVERWRITING MATERIALIZE TABS FOR CHAT*/
+.tabs .tab a {
+    color: #2ecc71; /*emerald*/
+    background: #ecf0f1; /*clouds*/
+    border-bottom: 1px solid moss;
+}
+.tabs .tab a:hover {
+    color: #2B8551; //moss
+}
+.tabs .tab a.active {
+    background-color: #ffffff;
+    font-weight: bold;
+}
+.tabs .indicator {
+    background-color: transparent; //moss
+}
