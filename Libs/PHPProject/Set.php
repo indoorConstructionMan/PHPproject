@@ -28,7 +28,7 @@ class PHPProject_Set implements SeekableIterator, Countable, ArrayAccess {
      *
      * @param array $params
      */
-    public function __construct(array $params) {
+    public function __construct(array $params = array()) {
         if (isset($params['data'])) {
             $this->_data = $params['data'];
         }

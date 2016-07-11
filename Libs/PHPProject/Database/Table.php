@@ -28,13 +28,19 @@ class PHPProject_Database_Table {
 
     public function object_query($query) {
         $result = mysql_query($query);
+        if (!$result) {
+            return null;
+        }
         $row = new $this->_object_class(mysql_fetch_assoc($result));
         return $row;
     }
 
     public function set_query($query) {
         $result = mysql_query($query);
-        $rows = new $this->_set_class(array());
+        if (!$result) {
+            return null;
+        }
+        $rows = new $this->_set_class();
         while ($row = mysql_fetch_assoc($result)) {
             $rows->push(new $this->_object_class($row));
         }

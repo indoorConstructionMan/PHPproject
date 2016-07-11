@@ -25,7 +25,7 @@ Chat = {
             // send request
             $.post("/chat/ajax/new_message", {
                 chat_id: chat_id,
-                message: message
+                content: message
             }, function (result) {
                 console.log(result);
                 // populate the chat output

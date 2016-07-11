@@ -35,7 +35,7 @@ class PHPProject_Object extends ArrayObject {
     public function __get($key) {
 
         if (!array_key_exists($key, $this->_data)) {
-            throw new Exception("Column '$key' is not in the table.");
+            throw new Exception("Property '$key' does not exist.");
         }
 
         return $this->_data[$key];
@@ -46,9 +46,9 @@ class PHPProject_Object extends ArrayObject {
      */
 
     public function __set($key, $value) {
-        if (!array_key_exists($key, $this->_data)) {
+        /*if (!array_key_exists($key, $this->_data)) {
             throw new Exception("Column '$key' is not in the table.");
-        }
+        }*/
 
         $this->_data[$key] = $value;
     }

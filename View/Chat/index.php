@@ -17,10 +17,22 @@
 </nav>
 <div class="row">
     <div class="col s10 full-height">
-        <?
-        $chat_id = $_SESSION['view_vars']->chat_id;
-        require('/View/_partials/chat_window.php');
-        ?>
+        <link rel="stylesheet" href="/css/chat.css">
+        <div id="chat_area" class="padding1 full-height-100">
+            <div class="chat_tabs full-height-100">
+                <div class="s12 tab-chat-fix ">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#chat_window_<?$GLOBALS['config']['general_chat_id']?>">general chat</a></li>
+                    </ul>
+                </div>
+                <!--GENERAL CHAT-->
+                <?$chat_window = $_SESSION['view_vars']->chat_general; require('/View/_partials/chat_window.php');?>
+                <!--USER CHATS-->
+                <?foreach ($_SESSION['view_vars']->chat_windows as $key => $chat_window) :?>
+                    <?require('/View/_partials/chat_window.php');?>
+                <?endforeach;?>
+            </div>
+        </div>
     </div>
     <div class="col s2 myrtle full-height">
         <div id="search">

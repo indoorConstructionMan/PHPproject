@@ -247,6 +247,21 @@ textarea { resize: none; }
 .shadow-inset {
     box-shadow: inset 0 0 15px rgba(0,0,0,0.25); 
 }
+.border1 {
+    border: 1px solid;
+}
+.border2 {
+    border: 2px solid;
+}
+.border5 {
+    border: 5px solid;
+}
+.border10 {
+    border: 10px solid;
+}
+.border15 {
+    border: 15px solid;
+}
 .justified {
     text-align: justify !important;
 }
@@ -293,12 +308,6 @@ textarea { resize: none; }
     border-radius: 50%;
     //border: 3px solid;
     box-shadow: 0 0 1px #27ae60, 0 0 1px #27ae60, 0 0 1px #27ae60;
-}
-.tab-chat-fix {
-    margin-bottom: -48px;
-}
-.chat-tab-fix {
-    padding-top: 48px;
 }
 .form_message {
     font-weight: bold;

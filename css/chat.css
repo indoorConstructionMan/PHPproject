@@ -9,10 +9,20 @@ and open the template in the editor.
 */
 
 /*OVERWRITING MATERIALIZE TABS FOR CHAT*/
+.tab-chat-fix {
+    margin-bottom: -48px;
+}
+.chat-tab-fix {
+    border-top: 48px solid #2ecc71;
+}
+.tabs {
+    background: none;
+}
 .tabs .tab a {
     color: #2ecc71; /*emerald*/
     background: #ecf0f1; /*clouds*/
     border-bottom: 1px solid #2B8551;
+    max-width: 30%;
 }
 .tabs .tab a:hover {
     color: #2B8551; //moss

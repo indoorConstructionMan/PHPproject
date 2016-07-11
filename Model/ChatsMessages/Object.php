@@ -1,5 +1,5 @@
 <?php
 
-Class ChatsMessages_Object extends PHPProject_Object {
+Class ChatsMessages_Object extends PHPProject_Database_Table_RowObject {
     
 }
