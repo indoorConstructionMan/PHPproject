@@ -12,7 +12,7 @@ and open the template in the editor.
 .tabs .tab a {
     color: #2ecc71; /*emerald*/
     background: #ecf0f1; /*clouds*/
-    border-bottom: 1px solid moss;
+    border-bottom: 1px solid #2B8551;
 }
 .tabs .tab a:hover {
     color: #2B8551; //moss
@@ -20,6 +20,7 @@ and open the template in the editor.
 .tabs .tab a.active {
     background-color: #ffffff;
     font-weight: bold;
+    border-bottom: 1px solid #ffffff;
 }
 .tabs .indicator {
     background-color: transparent; //moss
