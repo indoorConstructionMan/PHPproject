@@ -1,0 +1,1 @@
+ALTER TABLE `chats_messages` ADD `content` MEDIUMTEXT NOT NULL AFTER `id`;
