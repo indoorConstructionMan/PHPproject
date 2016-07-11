@@ -35,5 +35,9 @@ class ChatsMessages extends PHPProject_Database_Table {
         return $messages;
         
     }
+    
+    public function save_message() {
+        
+    }
 }
 

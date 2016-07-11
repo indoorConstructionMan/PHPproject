@@ -35,5 +35,9 @@
 </div>
 
 
+<div id="result"></div>
+<div id="view_online_result"></div>
+
 <script type="text/javascript" src="/js/user_search.js"></script>
 <script type="text/javascript" src="/js/view_online.js"></script>
+<script type="text/javascript" src="/js/display_message.js"></script>

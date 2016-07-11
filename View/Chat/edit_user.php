@@ -8,11 +8,7 @@
 
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content dropdown-menu-color  clouds-text flow-text emerald-text'>
-            <li class='dropdown-text-color dropdown-menu-color  clouds-text flow-text ' id="dropdownlist_online_users" ><a href="/chat/ajax/view_online" style="font-size: 18px;">Online Users</a></li>
-            <li class="divider dropdown-divider-color"></li>
             <li id="dropdownlist"><a href="/main_menu" class="dropdown-text-color" style="font-size: 18px; font">Main Page</a></li>
-            <li class="divider dropdown-divider-color"></li>
-            <li id="dropdownlist"><a href="/edit_user" class="dropdown-text-color" style="font-size: 18px;">Edit Profile</a></li>
             <li class="divider dropdown-divider-color"></li>
             <li id="dropdownlist"><a href="/logout" class="dropdown-text-color" style="font-size: 18px;">Logout</a></li>
         </ul>
