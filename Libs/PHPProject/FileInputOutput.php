@@ -2,7 +2,7 @@
 
 class PHPProject_FileInputOutput {
 
-    public static function file_save($file) {
+    public static function save_file($file) {
 
         $return_message = new PHPProject_ReturnMessage(array(
             'success' => false,
@@ -44,23 +44,20 @@ class PHPProject_FileInputOutput {
             $uploadOk = 0;
         }
 
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            $return_message['message'] = "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
-        } else {
-            if (!move_uploaded_file($file["tmp_name"], $target_file)) {
-                $return_message['message'] = "Sorry, there was an error uploading your file.";
-            } 
+
+        if (!move_uploaded_file($file["tmp_name"], $target_file)) {
+            $return_message['message'] = "Sorry, there was an error uploading your file.";
+            $uploadOk = 0;
         }
 
-        
-        if($uploadOk) {
+
+
+        if ($uploadOk) {
             $return_message['success'] = true;
         } else {
             $return_message['data'] = $file;
         }
-        
+
         return $return_message;
     }
 

@@ -53,6 +53,7 @@ class Users extends PHPProject_Database_Table {
         if ($user) {
             return new PHPProject_ReturnMessage(array(
                 'success' => true,
+                'message' => "",
                 'data' => $user
             ));
         } else {
@@ -70,6 +71,7 @@ class Users extends PHPProject_Database_Table {
         if ($user) {
             return new PHPProject_ReturnMessage(array(
                 'success' => true,
+                'message' => "",
                 'data' => $user
             ));
         } else {
@@ -81,17 +83,88 @@ class Users extends PHPProject_Database_Table {
         }
     }
 
-    public function save_avatar($file) {
-        //$x = new FileInputOutput();
-        //$x->save_file($file);
-        try {
-            $return = PHPProject_FileInputOutput::save_file($file); 
-        } catch(Exception $e) {
-            var_dump($e);
+    public function update_user_profile($file, $post_variables) {
+
+        $assign_new_password = false;
+        
+        unset($post_variables['submit']);
+        
+
+        $return = new PHPProject_ReturnMessage(array(
+            'success' => false,
+            'message' => "",
+            'data' => array()
+        ));
+
+        $post_variables['email'] = filter_var($post_variables['email'], FILTER_SANITIZE_EMAIL);
+        $post_variables['password'] = filter_var($post_variables['password'], FILTER_SANITIZE_STRING);
+        $post_variables['username'] = filter_var($post_variables['username'], FILTER_SANITIZE_STRING);
+        $post_variables['is_online'] = true;
+        $post_variables['avatar_abs_path'] = null;
+        
+
+        // Validation of email field
+        if (!filter_var($post_variables['email'], FILTER_VALIDATE_EMAIL)) {
+            $return['message'] = "email invalid.";
+            return $return;
         }
-    
+
+        if (!($post_variables['new_password'] == "" || $post_variables['new_password_confirm'] == "")) {
+            $post_variables['new_password_confirm'] = filter_var($post_variables['new_password_confirm'], FILTER_SANITIZE_STRING);
+            $post_variables['new_password'] = filter_var($post_variables['new_password'], FILTER_SANITIZE_STRING);
+
+            // Makes sure that password and password_confirm are both the same.
+            if (strcmp($post_variables['new_password'], $post_variables['new_password_confirm'])) {
+                return new PHPProject_ReturnMessage(array(
+                    'success' => false,
+                    'message' => "passwords don't match",
+                    'data' => $data
+                ));
+            } else {
+                $post_variables['password'] = $post_variables['new_password'];
+                unset($post_variables['new_password']);
+                unset($post_variables['new_password_confirm']);
+                $assign_new_password = true;
+                $return['success'] = true;
+            }
+        }
+
+        // Checks to make sure password is between 3-20 characters
+        if (strlen($post_variables['username']) < 3 || strlen($post_variables['username']) > 20) {
+            return new PHPProject_ReturnMessage(array(
+                'success' => false,
+                'message' => "username length must be between 3 and 20 characters",
+                'data' => $data
+            ));
+        }
+
+        $save_ok = PHPProject_FileInputOutput::save_file($file);
+        if($save_ok->success) {
+            $post_variables['avatar_abs_path'] = $GLOBALS['config']['target_dir'] . $file['name'];            
+        } else {
+            $return->message = "Did not save to filesystem.";
+        }
+       
+        
+        if (strcmp($_SESSION['chatapp_user']->password, $post_variables['password'])) {
+             
+            $user = new Users_Object($data);
+            $ret = $user->update();
+            if ($ret->success) {
+                $return['success'] = true;
+            } else {
+                $return['message'] = "Failure to update."; 
+            }
+        } else {
+            $return->message = "passwords did not match.";
+        }
+        
+        
+        
+        return $return;
+        
     }
-    
+
     public function get_online_users() {
         $query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
         $users = $this->set_query($query);
@@ -145,6 +218,7 @@ class Users extends PHPProject_Database_Table {
             $data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
             $data['password_confirm'] = filter_var($data['password_confirm'], FILTER_SANITIZE_STRING);
             $data['is_online'] = FALSE;
+            $data['avatar_abs_path'] = null;
         } else {
             return new PHPProject_ReturnMessage(array(
                 'success' => false,
