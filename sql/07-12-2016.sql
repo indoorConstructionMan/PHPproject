@@ -1,0 +1,1 @@
+ALTER TABLE users ADD avatar_abs_path varchar(255);

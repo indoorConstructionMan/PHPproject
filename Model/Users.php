@@ -81,6 +81,17 @@ class Users extends PHPProject_Database_Table {
         }
     }
 
+    public function save_avatar($file) {
+        //$x = new FileInputOutput();
+        //$x->save_file($file);
+        try {
+            $return = PHPProject_FileInputOutput::save_file($file); 
+        } catch(Exception $e) {
+            var_dump($e);
+        }
+    
+    }
+    
     public function get_online_users() {
         $query = "SELECT * FROM `$this->table_name` WHERE `is_online` = 1;";
         $users = $this->set_query($query);

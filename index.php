@@ -13,7 +13,8 @@ try {
     // route to appropriate controller action
     $GLOBALS['config'] = array(
         "site_url" => "http://dubs.stink.com",
-        "general_chat_id" => 1
+        "general_chat_id" => 1,
+        "target_dir"    => "uploads/"
     );
 } catch (Exception $e) {
     die($e->getMessage());

@@ -53,14 +53,13 @@
             <div class="row">
                 <div class="input-field col s12">
                     <input class="clouds-text moss-border bold flow-text" id="password" type="password" name="password" required>
-                    <label for="password" class="moss-text flow-text">password</label>
+                    <label for="password" class="moss-text flow-text" >password</label>
                 </div>
             </div>
             <div class="row">
                 <input class="col s6" type="file" name="fileToUpload" id="fileToUpload">
                 <a href="#" id="add_password_fields" class="col s6 form-link moss-text">change your password</a>
             </div>
-
             <button type="submit" value="/edit_user" name="submit" class="col s12 moss-text bold pulse-text-shadow">update profile</button>
         </form>
     </div>
