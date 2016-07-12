@@ -51,5 +51,9 @@ class Users_Object extends PHPProject_Database_Table_RowObject {
         
         return $return;
     }
+    
+    public function merge_data($data = array()) {
+        $this->_data = array_merge($this->_data, $data);
+    }
 
 }

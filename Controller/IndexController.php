@@ -17,24 +17,21 @@ class IndexController extends PHPProject_Controller {
 
     // Good portion of this was found here: http://www.w3schools.com/php/php_file_upload.asp
     public function edit_user_action() {
-        //var_dump($_FILES["fileToUpload"]["name"]);
-        //var_dump($_POST["submit"]);
-       
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
-            //var_dump($_POST);
-            //var_dump($_FILES["fileToUpload"]);
             
             $user_model = new Users();
-            $user_model->update_user_profile($_FILES["fileToUpload"], $_POST);
-            
-            $this->_generate_view_path(true);
-            //$this->_redirect('', 'chat');
+            $ret = $user_model->update_user_profile($_FILES["fileToUpload"], $_POST);
+            if ($ret->success) {
+                $this->_redirect('', 'chat');
+            } else {
+                $this->_generate_view_path(true);    
+            }
         } else {
             $this->_generate_view_path(true);
         }
-        return;
+        
     }
 
     public function login_action() {

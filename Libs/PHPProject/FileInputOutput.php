@@ -50,8 +50,6 @@ class PHPProject_FileInputOutput {
             $uploadOk = 0;
         }
 
-
-
         if ($uploadOk) {
             $return_message['success'] = true;
         } else {
