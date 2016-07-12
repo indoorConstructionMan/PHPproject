@@ -125,6 +125,16 @@ textarea { resize: none; }
     border-color: #34495e !important;
     outline-color: #34495e !important;
 }
+.offwhite {
+    background: #F5F7F7 !important;
+}
+.offwhite-text {
+    color: #F5F7F7 !important;
+}
+.offwhite-border {
+    border-color: #F5F7F7 !important;
+    outline-color: #F5F7F7 !important;
+}
 .clouds {
     background: #ecf0f1 !important;
 }
@@ -294,6 +304,9 @@ textarea { resize: none; }
 }
 .full-height-20 {
     height: 20%;
+}
+.overflow-auto {
+    overflow: auto;
 }
 .no-display {
     display: none;

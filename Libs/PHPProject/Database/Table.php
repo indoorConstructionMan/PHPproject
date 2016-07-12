@@ -28,7 +28,7 @@ class PHPProject_Database_Table {
 
     public function object_query($query) {
         $result = mysql_query($query);
-        if (!$result) {
+        if (!$result || mysql_num_rows($result) === 0 ) {
             return null;
         }
         $row = new $this->_object_class(mysql_fetch_assoc($result));

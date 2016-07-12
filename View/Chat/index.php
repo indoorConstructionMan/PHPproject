@@ -15,14 +15,19 @@
     </ul>
 
 </nav>
+
 <div class="row">
+    
     <div class="col s10 full-height no-padding">
         <link rel="stylesheet" href="/css/chat.css">
         <div id="chat_area" class="padding1 full-height-100">
             <div class="chat_tabs full-height-100">
-                <div class="s12 tab-chat-fix ">
+                <div class="s12 tab-chat-fix">
                     <ul class="tabs">
-                        <li class="tab col s3"><a href="#chat_window_<?$GLOBALS['config']['general_chat_id']?>">general chat</a></li>
+                        <li class="tab col"><a href="#chat_window_<?=$GLOBALS['config']['general_chat_id']?>">general chat</a></li>
+                        <?foreach ($_SESSION['view_vars']->chat_windows as $key => $chat_window) :?>
+                            <?require('/View/_partials/chat_tab.php');?>
+                        <?endforeach;?>
                     </ul>
                 </div>
                 <!--GENERAL CHAT-->
@@ -34,6 +39,7 @@
             </div>
         </div>
     </div>
+    
     <div class="col s2 myrtle full-height">
         <div id="search">
             <h5 class="emerald-text margin-bottom-none padding3">search users</h5>
@@ -58,9 +64,4 @@
 
 </div>
 
-<div>
-
-</div>
-
 <script type="text/javascript" src="/js/user_search.js"></script>
-<script type="text/javascript" src="/js/view_online.js"></script>

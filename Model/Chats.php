@@ -10,7 +10,8 @@ class Chats extends PHPProject_Database_Table {
     {
         $chatsusers_model = new ChatsUsers();
         $chatsusers_table = $chatsusers_model->table_name;
-        $query = "SELECT * FROM " . $this->table_name . " INNER JOIN $chatsusers_table ON " . $this->table_name . ".id = $chatsusers_table.chat_id WHERE id != " . $GLOBALS['config']['general_chat_id'];
+        $table = $this->table_name;
+        $query = "SELECT * FROM $chatsusers_table LEFT JOIN $table ON $table.id = $chatsusers_table.chat_id WHERE $chatsusers_table.user_id = $user_id AND $table.id != " . $GLOBALS['config']['general_chat_id'];
         $chats = $this->set_query($query);
         
         return $chats;

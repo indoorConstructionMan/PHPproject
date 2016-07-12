@@ -12,8 +12,7 @@ class PHPProject_Controller {
         return str_replace('_action', '', debug_backtrace()[$nested_level]['function']);
     }
 
-    protected function _generate_view_path($output_include = false, $view_vars = null) {
-        // clean view vars from session
+    protected function _prepare_view_vars($view_vars = array()) {
         $_SESSION['view_vars'] = array();
         if ($view_vars) {
             if (is_array($view_vars)) {
@@ -22,12 +21,29 @@ class PHPProject_Controller {
                 $_SESSION['view_vars'] = new PHPProject_ViewVars($view_vars->to_array());
             }
         }
+    }
+    
+    protected function _generate_view_path($output_include = false, $view_vars = null) {
+        // clean view vars from session
+        $this->_prepare_view_vars($view_vars);
         $path = SELF::VIEWS_PATH . $this->_get_controller_name() . "/" . $this->_get_action_name(2) . ".php";
         if ($output_include) {
             include($path);
         } else {
             return $path;
         }
+    }
+    
+    protected function _process_partial($path, $view_vars = array()) {
+        // get named vars for our view vars
+        $this->_prepare_view_vars($view_vars);
+        foreach ($view_vars as $key => $var) {
+            $$key = $var;
+        }
+        // record buffer output and return it
+        ob_start();
+        include $path;
+        return preg_replace('/^\s+|\n|\r|\s+$/m', '', ob_get_clean());
     }
 
     protected function _redirect($action, $controller = null) {

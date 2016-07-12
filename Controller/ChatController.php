@@ -18,6 +18,9 @@ class ChatController extends PHPProject_Controller {
         // if they are involved in any chats other than general, get the messages for those chats (assigned to messages)
         if (!is_null($chat_windows)) { 
             $chat_windows->get_messages();
+            $chat_windows->get_users(true, true);
+        } else {
+            $chat_windows = array();
         }
         
         $this->_generate_view_path(true, array(
@@ -58,19 +61,74 @@ class ChatController extends PHPProject_Controller {
         $this->_generate_view_path(true, $result);
         return;
     }
+    
+    public function _create_chat_action() {
+        
+        if (isset($_POST['user_id']) && $_POST['user_id'] != $_SESSION['chatapp_user']->id) {
+            
+            // see if we're already chatting with this user (and ONLY this user)
+            $chatsusers_model = new ChatsUsers();
+            $chatsuser = $chatsusers_model->chat_exists_between($_POST['user_id'], $_SESSION['chatapp_user']->id);
+            
+            if (!is_null($chatsuser)) {
+                // chat already exists
+                $this->_generate_view_path(true, array(
+                    "exists" => true,
+                    "chat_id" => $chatsuser->chat_id, 
+                    "chat_window" => null,
+                    "chat_tab" => null
+                ));
+            } else {
+                // create a new chat and save it
+                $chat = new Chats_Object(array(
+                    "timestamp" => date('Y-m-d H:i:s', time())
+                ));
+                $chat_result = $chat->save();
 
-    public function edit_user_action() {
-        $this->_generate_view_path(true);
-        return;
+                if ($chat_result->success) {
+                    // create the appropriate chat users
+                    $chat_user_self = new ChatsUsers_Object(array(
+                        "user_id" => $_SESSION['chatapp_user']->id,
+                        "chat_id" => $chat->id
+                    ));
+                    $chat_user_self->save();
+                    $chat_user = new ChatsUsers_Object(array(
+                        "user_id" => $_POST['user_id'],
+                        "chat_id" => $chat->id
+                    ));
+                    $chat_user->save();
+
+                    // add user data to the chat
+                    $chat->get_users(true, true, true);
+                    
+                    // process partials required
+                    $chat_window_partial = $this->_process_partial("/View/_partials/chat_window.php", array(
+                        "chat_window" => $chat
+                    ));
+                    $chat_tab_partial = $this->_process_partial("/View/_partials/chat_tab.php", array(
+                        "chat_window" => $chat
+                    ));
+                    
+                    $this->_generate_view_path(true, array(
+                        "exists" => false,
+                        "chat_id" => $chat->id, 
+                        "chat_window" => $chat_window_partial,
+                        "chat_tab" => $chat_tab_partial
+                    ));
+                }
+            }
+        }
+        
     }
-
-    // Need to clean up this function, spits back correct results from db.
-    // Still need to exclude guest_xxxxx formatting.
-    public function _view_online_action() {
-        $user_model = new Users();
-        $online_users = $user_model->get_online_users();
-
-        $this->_generate_view_path(true, $online_users);
+    
+    public function _get_chat_window_action() {
+        
+        
+        
+    }
+    
+    public function _get_chat_tab_action() {
+        
     }
 
     public function _get_messages_action() {
@@ -80,7 +138,11 @@ class ChatController extends PHPProject_Controller {
     public function _new_message_action() {
 
         if (isset($_POST['chat_id']) && ($_POST['content'])) {
-            $data = array_merge($_POST, array("user_id" => $_SESSION['chatapp_user']->id));
+            $data = array_merge($_POST, array(
+                "user_id" => $_SESSION['chatapp_user']->id, 
+                "timestamp" => date('Y-m-d H:i:s', time()), 
+                "chats_messagetypes_id" => ChatsMessageTypes::TEXT
+            ));
             $message = new ChatsMessages_Object($data);
             $message_result = $message->save();
             if ($message_result->success) {
@@ -91,6 +153,7 @@ class ChatController extends PHPProject_Controller {
                 ));
             }
         }
+        
     }
 
     // need to save to chats table the id's of the two people involved.

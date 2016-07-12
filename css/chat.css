@@ -18,11 +18,23 @@ and open the template in the editor.
 .tabs {
     background: none;
 }
+.tabs .tab {
+    margin: 0 1%;
+} 
+.tabs .tab:first-child {
+    margin: 0 1% 0 0;
+} 
+.tabs .tab:last-of-type {
+    margin: 0 0 0 1%;
+} 
+.tabs .tab:only-of-type {
+    margin: 0 0 0 0;
+}
 .tabs .tab a {
     color: #2ecc71; /*emerald*/
     background: #ecf0f1; /*clouds*/
-    border-bottom: 1px solid #2B8551;
-    max-width: 30%;
+    text-transform: none;
+    text-spacing: normal;
 }
 .tabs .tab a:hover {
     color: #2B8551; //moss
@@ -30,7 +42,6 @@ and open the template in the editor.
 .tabs .tab a.active {
     background-color: #ffffff;
     font-weight: bold;
-    border-bottom: 1px solid #ffffff;
 }
 .tabs .indicator {
     background-color: transparent; //moss

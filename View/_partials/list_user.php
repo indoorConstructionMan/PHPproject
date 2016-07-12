@@ -5,6 +5,6 @@
         <i class="material-icons circle alizarin-text">thumb_down</i>
     <? endif; ?>
     <span class="clouds-text padding1-left"><?= $user->username; ?></span>
-    <a href="#!" class="secondary-content"><i class="material-icons clouds-text">chat</i></a>
+    <a href="#!" class="secondary-content chat_link" user_id="<?=$user->id?>"><i class="material-icons clouds-text">chat</i></a>
 </li>
 

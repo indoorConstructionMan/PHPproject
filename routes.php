@@ -54,8 +54,18 @@ switch ($route) {
         $controller = new IndexController();
         $controller->index_action();
         break;
-
-
+    case "/chat/ajax/create_chat":
+        $controller = new ChatController();
+        $controller->_create_chat_action();
+        break;
+    case "/chat/ajax/get_chat_tab":
+        $controller = new ChatController();
+        $controller->_create_chat_action();
+        break;
+    case "/chat/ajax/get_chat_window":
+        $controller = new ChatController();
+        $controller->_create_chat_action();
+        break;
     case "/chat/ajax/get-messages":
         $controller = new ChatController();
         $controller->_get_messages_action();
