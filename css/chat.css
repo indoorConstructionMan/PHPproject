@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 /*OVERWRITING MATERIALIZE TABS FOR CHAT*/
+
 .tab-chat-fix {
     margin-bottom: -48px;
 }
@@ -21,7 +22,7 @@ and open the template in the editor.
 .tabs .tab {
     margin: 0 1%;
 } 
-.tabs .tab:first-child {
+/*.tabs .tab:first-child {
     margin: 0 1% 0 0;
 } 
 .tabs .tab:last-of-type {
@@ -29,7 +30,7 @@ and open the template in the editor.
 } 
 .tabs .tab:only-of-type {
     margin: 0 0 0 0;
-}
+}*/
 .tabs .tab a {
     color: #ecf0f1; /*white*/
     background: #2B8551; /*moss*/

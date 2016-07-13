@@ -20,7 +20,7 @@
     
     <div class="col s10 full-height no-padding">
         <link rel="stylesheet" href="/css/chat.css">
-        <div id="chat_area" class="padding1 full-height-100">
+        <div id="chat_area" class="full-height-100 margin-top-1">
             <div class="chat_tabs full-height-100">
                 <div class="s12 tab-chat-fix">
                     <ul class="tabs">

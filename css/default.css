@@ -254,6 +254,9 @@ textarea { resize: none; outline: none; vertical-align: top; }
 .margin-top-none {
     margin-top: 0 !important;
 }
+.margin-top-1 {
+    margin-top: 1% !Important;
+}
 .margin-none {
     margin: 0 !important;
 }
