@@ -31,18 +31,84 @@ and open the template in the editor.
     margin: 0 0 0 0;
 }
 .tabs .tab a {
-    color: #2ecc71; /*emerald*/
-    background: #ecf0f1; /*clouds*/
+    color: #ecf0f1; /*white*/
+    background: #2B8551; /*moss*/
     text-transform: none;
     text-spacing: normal;
 }
 .tabs .tab a:hover {
-    color: #2B8551; //moss
+    color: #ffffff; //white
 }
 .tabs .tab a.active {
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #2D714A; /*myrtle*/
     font-weight: bold;
 }
 .tabs .indicator {
     background-color: transparent; //moss
+}
+.color {
+    width: 20px;
+    height: 20px;
+    margin: 10px 10px;
+    position: relative;
+}
+.color.active::after {
+    content: "";
+    display: block;
+    position: absolute;
+    
+}
+textarea {
+    
+}
+.chat_message_container {
+    margin: 1%;
+}
+.chat_message {
+    padding: 1%;
+    background: #fff;
+    //border-radius: 15px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    max-width: 80%;
+}
+.chat_pin { 
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 15px 25px;
+    border-color: transparent transparent #ffffff transparent;
+    z-index: 10;
+}
+.chat_avatar {
+    display: inline-block;
+    margin-right: 15px;
+    width: 5%;
+    
+    background: url('/img/default_avatar.jpg') center no-repeat;
+    background-size: cover;
+}
+.chat_avatar::after {
+    content: "";
+    width: 100%;
+    padding-top: 100%;
+    display: block;
+}
+.chat_message_right {
+    display: flex;
+    justify-content: flex-end;
+}
+.chat_message_right .chat_pin {
+    border-width: 15px 0 0 25px;
+    border-color: transparent transparent transparent #ffffff;
+}
+.chat_message_right .chat_avatar {
+    margin-right: 0;
+    margin-left: 15px;
+}
+.chat_message_right .chat_message {
+    
 }

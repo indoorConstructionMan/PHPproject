@@ -14,7 +14,27 @@ try {
     $GLOBALS['config'] = array(
         "site_url" => "http://dubs.stink.com",
         "general_chat_id" => 1,
-        "target_dir"    => "uploads/"
+        "target_dir"    => "uploads/",
+        "chat_colors" => array(
+            "blue" => "#3290BE",
+            "sunshine" => "#FF805F",
+            "pumpkin" => "#d35400",
+            "pomegranate" => "#c0392b",
+            "peter" => "#3498DB",
+            "belize" => "#2980B9",
+            "alizarin" => "#e74c3c",
+            "greensea" => "#16a085",
+            "moss" => "#2B8551",
+            "myrtle" => "#2D714A",
+            "nephritis" => "#27ae60",
+            "asphalt" => "#34495e",
+            "sunflower" => "#f1c40f",
+            "turquoise" => "#1abc9c",
+            "emerald" => "#2ecc71"
+        ),
+        'chat_colors_default' => array(
+            "asphalt" => "#34495e"
+        )
     );
 } catch (Exception $e) {
     die($e->getMessage());

@@ -1,6 +1,6 @@
 // colors#FF8F0D #FF805F #3290BE #009943
 * { margin:0; padding:0; }
-textarea { resize: none; }
+textarea { resize: none; outline: none; vertical-align: top; }
 .weirdfix {
 
 }
@@ -195,11 +195,20 @@ textarea { resize: none; }
 .large-font-size {
     font-size: 2rem !important;
 }
+.huge-font-size {
+    font-size: 4rem !important;
+}
 .medium-font-size {
     font-size: 1.5rem !important;
 }
 .small-font-size {
     font-size: 0.5rem !important;
+}
+.lineheight-normal {
+    line-height: normal;
+}
+.lineheight-zero {
+    line-height: 0;
 }
 .bold {
     font-weight: bold !important;
@@ -257,6 +266,9 @@ textarea { resize: none; }
 .shadow-inset {
     box-shadow: inset 0 0 15px rgba(0,0,0,0.25); 
 }
+.shadow-inset-light {
+    box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.20); 
+}
 .border1 {
     border: 1px solid;
 }
@@ -271,6 +283,9 @@ textarea { resize: none; }
 }
 .border15 {
     border: 15px solid;
+}
+.border-top-none {
+    border-top: 0px;
 }
 .justified {
     text-align: justify !important;
@@ -290,6 +305,9 @@ textarea { resize: none; }
 .no-height {
     height: 0px !important;
 }
+.width-auto {
+    width: auto !important;
+}
 .full-width {
     width: 100%;
 }
@@ -299,11 +317,32 @@ textarea { resize: none; }
 .full-height-100 {
     height: 100%;
 }
+.full-height-90 {
+    height: 90%;
+}
 .full-height-80 {
     height: 80%;
 }
+.full-height-70 {
+    height: 70%;
+}
+.full-height-60 {
+    height: 60%;
+}
+.full-height-50 {
+    height: 50%;
+}
+.full-height-40 {
+    height: 40%;
+}
+.full-height-30 {
+    height: 30%;
+}
 .full-height-20 {
     height: 20%;
+}
+.full-height-10 {
+    height: 10%;
 }
 .overflow-auto {
     overflow: auto;
@@ -314,13 +353,19 @@ textarea { resize: none; }
 .fixed-display {
     display: fixed;
 }
+.inlineblock-display {
+    display: inline-block;
+}
+.inline-display {
+    display: inline;
+}
 .icon {
     font-size: 3em;
     padding: 4%;
     margin: 4% 0 4% 0;
     border-radius: 50%;
     //border: 3px solid;
-    box-shadow: 0 0 1px #27ae60, 0 0 1px #27ae60, 0 0 1px #27ae60;
+    //box-shadow: 0 0 1px #27ae60, 0 0 1px #27ae60, 0 0 1px #27ae60;
 }
 .form_message {
     font-weight: bold;
