@@ -20,11 +20,7 @@
                     <label for="password" class="moss-text flow-text">password</label>
                 </div>
             </div>
-            <? if (isset($_SESSION['view_vars']->message)) : ?>
-                <div class="row">
-                    <div class="form_message white-text col s12 center-align hvr-buzz-out-stay"><i class="inherit-font-size material-icons">error_outline</i><?= $_SESSION['view_vars']->message ?></div>
-                </div>
-            <? endif; ?>
+            <? require('/View/_partials/error_message.php'); ?>
             <div class="row">
                 <button type="submit" class="col s12 moss-text bold pulse-text-shadow hvr-buzz" style="">login</button>
                 <a href="register" class="form-link moss-text" style="">click here to create an account</a>

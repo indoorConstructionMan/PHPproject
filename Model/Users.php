@@ -106,6 +106,8 @@ class Users extends PHPProject_Database_Table {
         $post_variables['is_online'] = true;
         $post_variables['avatar_abs_path'] = null;
         
+        $old_avatar_location = $_SESSION['chatapp_user']->avatar_abs_path;
+        
 
         // Validation of email field
         if (!filter_var($post_variables['email'], FILTER_VALIDATE_EMAIL)) {
@@ -134,7 +136,7 @@ class Users extends PHPProject_Database_Table {
         // Checks to make sure password is between 3-20 characters
         if (strlen($post_variables['username']) < 3 || strlen($post_variables['username']) > 20) {
             $return['message'] = 'username length must be between 3 and 20 characters';
-            $return['success'] = true;
+            $return['success'] = false;
             return $return;
         }
 
@@ -142,10 +144,17 @@ class Users extends PHPProject_Database_Table {
         if($save_ok->success) {
             $post_variables['avatar_abs_path'] = $GLOBALS['config']['target_dir'] . $file['name']; 
         } else {
-            $post_variables['avatar_abs_path'] = null; 
-            $return->message = "Did not save to filesystem.";
-            $return['success'] = false;
+            $post_variables['avatar_abs_path'] = $old_avatar_location;
         }
+        
+        
+        if ($_SESSION['chatapp_user']->check_password($post_variables['password'])->success) {
+            $password_valid = true;
+        } else {
+            $return->message = "password invalid.";
+            $return['success'] = false;
+            return $return;
+         }
         
         if($assign_new_password) {
             $post_variables['password'] = md5($post_variables['new_password']);
@@ -156,31 +165,21 @@ class Users extends PHPProject_Database_Table {
         unset($post_variables['new_password']);
         unset($post_variables['new_password_confirm']);
         
-        if ($_SESSION['chatapp_user']->check_password($post_variables['password'])) {
+        if ($password_valid) {
             
-        }
-        
-        
-        
-        
-        
-        if (strcmp($_SESSION['chatapp_user']->password, $post_variables['password'])) {
             $_SESSION['chatapp_user']->merge_data($post_variables);
             $ret = $_SESSION['chatapp_user']->update();
              
             if ($ret->success) {
                 $return['success'] = true;
             } else {
-                $return['message'] = "Failure to update."; 
-                return $return;
+                $return['message'] = "Failure to update.";
             }
             
         } else {
             $return->message = "passwords did not match.";
-            return $return;
         }
         return $return;
-        
     }
 
     public function get_online_users() {

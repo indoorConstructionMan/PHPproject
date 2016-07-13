@@ -60,6 +60,7 @@
                 <input class="col s6" type="file" name="fileToUpload" id="fileToUpload">
                 <a href="#" id="add_password_fields" class="col s6 form-link moss-text">change your password</a>
             </div>
+            <? require('/View/_partials/error_message.php'); ?>
             <button type="submit" value="/edit_user" name="submit" class="col s12 moss-text bold pulse-text-shadow">update profile</button>
         </form>
     </div>

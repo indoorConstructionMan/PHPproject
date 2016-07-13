@@ -32,14 +32,10 @@
                     <label for="password_confirm" class="moss-text flow-text">confirm password</label>
                 </div>
             </div>
-            <? if (isset($_SESSION['view_vars']->message)) : ?>
-                <div class="row">
-                    <div class="form_message white-text col s12 center-align hvr-buzz-out-stay"><i class="inherit-font-size material-icons">error_outline</i><?= $_SESSION['view_vars']->message ?></div>
-                </div>
-            <? endif; ?>
+            <? require('/View/_partials/error_message.php'); ?>
             <div class="row">
                 <button type="submit" class="col s12 moss-text bold pulse-text-shadow hvr-buzz" style="">create account</button>
-                <a href="register" class="form-link moss-text" style="">click here to create an account</a>
+                <a href="login" class="form-link moss-text" style="">back to login</a>
                 <a href="guest_login" class="form-link clouds-text" style="">sign in as guest</a>
             </div>
         </form>

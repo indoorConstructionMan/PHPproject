@@ -19,15 +19,16 @@ class IndexController extends PHPProject_Controller {
     public function edit_user_action() {
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
-            
+              
             $user_model = new Users();
             $ret = $user_model->update_user_profile($_FILES["fileToUpload"], $_POST);
+            
             if ($ret->success) {
                 $this->_redirect('', 'chat');
             } else {
-                $this->_generate_view_path(true);    
+                $this->_generate_view_path(true, $ret);    
             }
+            
         } else {
             $this->_generate_view_path(true);
         }
