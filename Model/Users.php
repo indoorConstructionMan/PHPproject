@@ -87,6 +87,7 @@ class Users extends PHPProject_Database_Table {
         
         // check to see if new password should be changed
         $assign_new_password = false;
+        $password_valid = false;
         
         // Ain't nobody care about this key val pair, unset it.
         unset($post_variables['submit']);
@@ -130,16 +131,6 @@ class Users extends PHPProject_Database_Table {
             }
         }
         
-        if($assign_new_password) {
-            $post_variables['password'] = md5($post_variables['new_password']);
-        } else {
-            $post_variables['password'] = md5($post_variables['password']);
-            
-        }
-
-        unset($post_variables['new_password']);
-        unset($post_variables['new_password_confirm']);
-        
         // Checks to make sure password is between 3-20 characters
         if (strlen($post_variables['username']) < 3 || strlen($post_variables['username']) > 20) {
             $return['message'] = 'username length must be between 3 and 20 characters';
@@ -151,10 +142,27 @@ class Users extends PHPProject_Database_Table {
         if($save_ok->success) {
             $post_variables['avatar_abs_path'] = $GLOBALS['config']['target_dir'] . $file['name']; 
         } else {
+            $post_variables['avatar_abs_path'] = null; 
             $return->message = "Did not save to filesystem.";
             $return['success'] = false;
-            return $return;
         }
+        
+        if($assign_new_password) {
+            $post_variables['password'] = md5($post_variables['new_password']);
+        } else {
+            $post_variables['password'] = md5($post_variables['password']);
+        }
+
+        unset($post_variables['new_password']);
+        unset($post_variables['new_password_confirm']);
+        
+        if ($_SESSION['chatapp_user']->check_password($post_variables['password'])) {
+            
+        }
+        
+        
+        
+        
         
         if (strcmp($_SESSION['chatapp_user']->password, $post_variables['password'])) {
             $_SESSION['chatapp_user']->merge_data($post_variables);
@@ -166,6 +174,7 @@ class Users extends PHPProject_Database_Table {
                 $return['message'] = "Failure to update."; 
                 return $return;
             }
+            
         } else {
             $return->message = "passwords did not match.";
             return $return;

@@ -33,22 +33,23 @@ class Users_Object extends PHPProject_Database_Table_RowObject {
         // checks if password have been provided
         if (!isset($password)) {
             $return->message = "Please provide a password.";
-        } else {
-            $return->success = true;
-        }
+            $return->success = false;
+        } 
         
         if ($new_user) {
             $this->password = md5($this->password);
         }
 
-        // see if the password is correct
-        if ($hashed_password != $this->password) {
-            $return->message = "Password or email provided is incorrect.";
-            return $return;
-        }
-        // hashing it out (password)
-        $hashed_password = md5($password);
+        var_dump($this->password);
+        var_dump($password);
         
+        // see if the password is correct
+        if ($password != $this->password) {
+            $return->message = "Password or email provided is incorrect.";
+            $return->success = false;
+        } else {
+            $return->success = true;
+        }
         return $return;
     }
     
