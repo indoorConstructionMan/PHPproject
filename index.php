@@ -26,6 +26,7 @@ try {
             "greensea" => "#16a085",
             "moss" => "#2B8551",
             "myrtle" => "#2D714A",
+            "avacado" => "#2D8F57",
             "nephritis" => "#27ae60",
             "asphalt" => "#34495e",
             "sunflower" => "#f1c40f",

@@ -30,7 +30,8 @@ Chat = {
                 Chat.gotoTab(result.chat_id);
             } else {
                 Chat.$chatTabs.append(result.chat_tab).tabs();
-                Chat.$chatArea.append(result.chat_window); 
+                Chat.$chatArea.append(result.chat_window);
+                Chat.gotoTab(result.chat_id);
             }
         }, 'json');
     },

@@ -1,1 +1,1 @@
-<li class="tab col"><a href="#chat_window_<?=$chat_window->id?>"><?=$chat_window->users?></a></li>
+<li class="tab col"><a class="valign-wrapper mantis transition-all" href="#chat_window_<?=$chat_window->id?>"><?=$chat_window->users?></a></li>

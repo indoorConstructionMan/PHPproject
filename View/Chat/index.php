@@ -24,7 +24,7 @@
             <div class="chat_tabs full-height-100">
                 <div class="s12 tab-chat-fix">
                     <ul class="tabs">
-                        <li class="tab col"><a href="#chat_window_<?=$GLOBALS['config']['general_chat_id']?>">general chat</a></li>
+                        <li class="tab col"><a class="valign-wrapper mantis transition-all" href="#chat_window_<?=$GLOBALS['config']['general_chat_id']?>">general chat</a></li>
                         <?foreach ($_SESSION['view_vars']->chat_windows as $key => $chat_window) :?>
                             <?require('/View/_partials/chat_tab.php');?>
                         <?endforeach;?>
@@ -40,7 +40,7 @@
         </div>
     </div>
     
-    <div class="col s2 myrtle full-height">
+    <div class="col s2 myrtle full-height overflow-auto">
         <div id="search">
             <h5 class="emerald-text margin-bottom-none padding3">search users</h5>
             <form method="post" id="searchForm" action="/chat/ajax/search" autocomplete="off" class="">

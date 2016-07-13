@@ -20,30 +20,71 @@ and open the template in the editor.
     background: none;
 }
 .tabs .tab {
-    margin: 0 1%;
+    margin: 0 -5px;
 } 
-/*.tabs .tab:first-child {
-    margin: 0 1% 0 0;
+.tabs .tab:first-of-type {
+    margin: 0 0px;
 } 
 .tabs .tab:last-of-type {
-    margin: 0 0 0 1%;
+    margin: 0 0px;
 } 
-.tabs .tab:only-of-type {
-    margin: 0 0 0 0;
-}*/
 .tabs .tab a {
+    display: flex;
+    justify-content: center;
     color: #ecf0f1; /*white*/
     background: #2B8551; /*moss*/
     text-transform: none;
-    text-spacing: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    overflow-wrap: normal;
+    white-space:normal;
+    text-overflow: unset;
+    position: relative;
+    width: calc(100% - 20px);
+    margin: auto;
+    overflow: visible;
+    z-index: 0;
+}
+.tabs .tab a::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    overflow: visible;
+    left: 100%;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 48px 0 0 10px;
+    border-color: transparent transparent transparent #2CA55F;/*mantis*/
+}
+.tabs .tab a::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    overflow: visible;
+    right: 100%;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 48px 10px;
+    border-color: transparent transparent #2CA55F transparent;/*mantis*/
 }
 .tabs .tab a:hover {
     color: #ffffff; //white
 }
 .tabs .tab a.active {
     color: #ffffff;
-    background-color: #2D714A; /*myrtle*/
+    background-color: #2D714A !important; /*myrtle*/
     font-weight: bold;
+    z-index: 10;
+}
+.tabs .tab a.active::after {
+    border-color: transparent transparent transparent #2D714A;
+}
+.tabs .tab a.active::before {
+    border-color: transparent transparent #2D714A transparent;
 }
 .tabs .indicator {
     background-color: transparent; //moss
@@ -67,13 +108,13 @@ textarea {
     margin: 1%;
 }
 .chat_message {
-    padding: 1%;
     background: #fff;
     //border-radius: 15px;
     display: inline-block;
     position: relative;
     z-index: 1;
     max-width: 80%;
+    padding: 15px;
 }
 .chat_pin { 
     display: inline-block;
@@ -88,6 +129,7 @@ textarea {
     display: inline-block;
     margin-right: 15px;
     width: 5%;
+    border-radius: 50%;
     
     background: url('/img/default_avatar.jpg') center no-repeat;
     background-size: cover;

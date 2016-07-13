@@ -105,6 +105,26 @@ textarea { resize: none; outline: none; vertical-align: top; }
     border-color: #2D714A !important;
     outline-color: #2D714A !important;
 }
+.mantis {
+    background: #2CA55F !important;
+}
+.mantis-text {
+    color: #2CA55F !important;
+}
+.mantis-border {
+    border-color: #2CA55F !important;
+    outline-color: #2CA55F !important;
+}
+.avocado {
+    background: #2D8F57 !important;
+}
+.avocado-text {
+    color: #2D8F57 !important;
+}
+.avocado-border {
+    border-color: #2D8F57 !important;
+    outline-color: #2D8F57 !important;
+}
 .nephritis {
     background: #27ae60 !important;
 }
@@ -124,6 +144,16 @@ textarea { resize: none; outline: none; vertical-align: top; }
 .asphalt-border {
     border-color: #34495e !important;
     outline-color: #34495e !important;
+}
+.slate {
+    background: #333333 !important;
+}
+.slate-text {
+    color: #333333 !important;
+}
+.slate-border {
+    border-color: #333333 !important;
+    outline-color: #333333 !important;
 }
 .offwhite {
     background: #F5F7F7 !important;
