@@ -14,7 +14,7 @@ and open the template in the editor.
     margin-bottom: -48px;
 }
 .chat-tab-fix {
-    border-top: 48px solid #2ecc71;
+    border-top: 48px solid #333;
 }
 .tabs {
     background: none;
@@ -89,6 +89,11 @@ and open the template in the editor.
 .tabs .indicator {
     background-color: transparent; //moss
 }
+
+.chat_window_output {
+    position: relative;
+}
+
 .color {
     width: 20px;
     height: 20px;
@@ -105,7 +110,7 @@ textarea {
     
 }
 .chat_message_container {
-    margin: 1%;
+    padding: 1%;
 }
 .chat_message {
     background: #fff;
@@ -130,6 +135,8 @@ textarea {
     margin-right: 15px;
     width: 5%;
     border-radius: 50%;
+    position: relative;
+    z-index: 1;
     
     background: url('/img/default_avatar.jpg') center no-repeat;
     background-size: cover;

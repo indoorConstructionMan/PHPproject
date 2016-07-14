@@ -58,17 +58,25 @@ if (stripos($_SERVER['PATH_INFO'], "ajax") === false) :
             <!-- our default stylesheet, contains styles used on many pages -->
             <link rel="stylesheet" href="/css/default.css">
             <!-- hover effects stylesheet, contains styles used on many pages -->
-            <link rel="stylesheet" href="/css/hover.css">
+            <link rel="stylesheet" href="/css/hover.css">            
 
             <!-- jquery -->
             <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
             <!-- Materialize CSS Framework (JavaScript component) -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+            <!-- jQuery plugins -->
             <!-- chat -->
             <script src="/js/chat.js"></script>
+            
+            <script>
+                $(function(){
+                    // initalize custom scrollbars
+                    $('.overflow-auto').jScrollPane();
+                });
+            </script>
         </head>
 
-        <body class="emerald">
+        <body class="emerald custom-scrollbar">
             <?php require_once('routes.php'); ?>
         </body>
 

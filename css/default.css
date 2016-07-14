@@ -250,8 +250,47 @@ textarea { resize: none; outline: none; vertical-align: top; }
 .no-padding {
     padding: 0px !important;
 }
+.no-padding-left {
+    padding-left: 0px !important;
+}
+.no-padding-right {
+    padding-right: 0px !important;
+}
+.no-padding-top {
+    padding-top: 0px !important;
+}
+.no-padding-bottom {
+    padding-bottom: 0px !important;
+}
+.padding1p {
+    padding: 1px !important;
+}
+.padding2p {
+    padding: 2px !important;
+}
+.padding5p {
+    padding: 5px !important;
+}
+.padding10p {
+    padding: 10px !important;
+}
+.padding15p {
+    padding: 15px !important;
+}
+.padding20p {
+    padding: 20px !important;
+}
+.padding30p {
+    padding: 30px !important;
+}
+.padding45p {
+    padding: 45px !important;
+}
 .padding1 {
     padding: 1% !important;
+}
+.padding1-top {
+    padding-top: 1% !important;
 }
 .padding1-left {
     padding-left: 1% !important;
@@ -319,6 +358,9 @@ textarea { resize: none; outline: none; vertical-align: top; }
 }
 .border-top-none {
     border-top: 0px;
+}
+.border-bottom-none {
+    border-bottom: 0px;
 }
 .justified {
     text-align: justify !important;
@@ -391,6 +433,17 @@ textarea { resize: none; outline: none; vertical-align: top; }
 }
 .inline-display {
     display: inline;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.15);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.30);
 }
 .icon {
     font-size: 3em;
@@ -517,7 +570,7 @@ textarea { resize: none; outline: none; vertical-align: top; }
 
 body {
     //padding: 2% 0 0 0;
-    overflow: hidden;
+    //overflow: hidden;
 }
 .container {
     padding: 2.5%;

@@ -48,7 +48,7 @@ Chat = {
         
         // scroll to bottom of chat window
         $output = $('#chat_window_' + chat_id + ' .chat_window_output');
-        $output.animate({ scrollTop: $output.prop("scrollHeight")}, 200);
+        $output.animate({ scrollTop: $output.prop("scrollHeight")}, 0);
     },
     
     sendMessage: function (chat_id) {

@@ -4,7 +4,8 @@
 $GLOBALS['INCLUDE_DIRS'] = array("Libs/", "Model/", "Controller/");
 
 // built-in php autoloader function, get's called automatically whenever a class is used (ie. new Users() or User::somefunction())
-spl_autoload_register(function ($class_name) {
+spl_autoload_register('autoloader');
+function autoloader ($class_name) {
 
     // loop through each of the directories we put in the array above
     foreach ($GLOBALS['INCLUDE_DIRS'] as $INCLUDE_DIR) {
@@ -29,4 +30,4 @@ spl_autoload_register(function ($class_name) {
             break;
         }
     }
-});
+}

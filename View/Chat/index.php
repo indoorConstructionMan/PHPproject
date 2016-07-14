@@ -16,11 +16,11 @@
 
 </nav>
 
-<div class="row">
+<div class="row margin-bottom-none">
     
-    <div class="col s10 full-height no-padding">
+    <div class="col s10 full-height no-padding slate padding45p">
         <link rel="stylesheet" href="/css/chat.css">
-        <div id="chat_area" class="full-height-100 margin-top-1">
+        <div id="chat_area" class="full-height-100">
             <div class="chat_tabs full-height-100">
                 <div class="s12 tab-chat-fix">
                     <ul class="tabs">
@@ -40,9 +40,9 @@
         </div>
     </div>
     
-    <div class="col s2 myrtle full-height overflow-auto">
-        <div id="search">
-            <h5 class="emerald-text margin-bottom-none padding3">search users</h5>
+    <div class="col s2 slate full-height overflow-auto custom-scrollbar">
+        <div id="search" class="">
+            <h5 class="emerald-text margin-bottom-none padding3 medium-font-size">search users</h5>
             <form method="post" id="searchForm" action="/chat/ajax/search" autocomplete="off" class="">
                 <div class="input-field padding3 margin-top-none">          
                     <input class="clouds-text emerald-border bold flow-text regular-font-size" id="search_bar" type="text" name="search_bar" required>
@@ -53,7 +53,7 @@
         </div>
         <div class="divider moss"></div>
         <div id="online_users">
-            <h5 class="emerald-text margin-bottom-none padding3">online users</h5>
+            <h5 class="emerald-text margin-bottom-none padding3 medium-font-size">online users</h5>
             <ul class="margin-top-none">
                 <? foreach ($_SESSION['view_vars']->online_users as $key => $user) : ?>
                     <? require("/View/_partials/list_user.php"); ?>
